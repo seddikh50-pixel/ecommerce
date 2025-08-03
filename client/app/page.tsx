@@ -7,9 +7,10 @@ export default function Home() {
     <div >
       <Header/>
     <div className="bg-gray-100">
-cvbcvbcvb
+cvbcvbcvb sdeds
     </div>
     <Footer/>
     </div>
   );
 }
+  
