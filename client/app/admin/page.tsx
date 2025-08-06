@@ -1,51 +1,104 @@
 "use client"
-import Container from '@/components/common/Container'
 
-import React, { useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import Container from '@/components/common/Container'
 import { tokenStore } from '@/app/store/token.store';
+import { useRouter } from 'next/navigation';
+
+
+import { Button } from "@/components/ui/button";
 
 const Admin = () => {
+    const router = useRouter()
+    // const token = tokenStore((state) => state.token);
+    // const setToken = tokenStore((state) => state.setToken);
+    // const [isAdmin, setIsAdmin] = useState(false)
 
-    const token = tokenStore((state) => state.token);
-    const setToken = tokenStore((state) => state.setToken);
 
-    const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        const formData = new FormData(e.currentTarget);
-        const email = formData.get('email');
-        const password = formData.get('password');
 
-        const response = await fetch('/api/admin/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email, password }),
-        })
-        const data = await response.json();
-     
-        setToken(data.token);  
-        localStorage.setItem("token", data.token);
-    }
+    // const verfyToken = async () => {
+    //     console.log(token)
+    //     try {
+    //         const response = await fetch('/api/admin/tokenCheck', {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Authorization': `Bearer ${token}`,
+    //                 'Content-Type': 'application/json',
+    //             },
+    //         });
+    //         const data = await response.json()
+    //         if (data.success === false) {
+    //             return router.push('/login')
+    //         }
+    //         if (data.role === "admin") {
+    //             setIsAdmin(true)
+    //         }
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
+    // }
 
     // useEffect(() => {
-    //       const savedToken = localStorage.getItem("token");
-    // if (savedToken) {
-    //   setToken(savedToken);
-    // }
-    // }, []);
+    //     if(token){
+    //         verfyToken()
+    //     }
+    // }, [token]);
+
+
+
+    const verifyToken = async () => {
+        console.log(document.cookie);
+        try {
+            const response = await fetch('/api/admin/tokenCheck', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            const data = await response.json()
+            if (data.role === "admin") {
+                router.push('admin')
+            } else {
+                router.push("/login");
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(() => {
+        verifyToken()
+    }, []);
+
+
+    const handleLogout = async () => {
+       const response =  await fetch("/api/admin/logout", { method: "POST" });
+       console.log(response)
+        router.push("/login");
+    };
+
+
+
+
     return (
-        <div className='bg-gray-100 pb-10 flex h-screen items-center justify-center'>
-            <Container className='flex flex-col h-screen items-center justify-center gap-4'>
-                <h1 className='text-4xl font-black'>ADMIN PANEL</h1>
-                <form action="" onSubmit={onSubmit} className='flex flex-col gap-4 p-4 max-w-[450px] w-[450px]'>
-                    <input name="email" type="email" placeholder='Email' className='bg-white w-full py-2 px-4' />
-                    <input name="password" type="password" placeholder='Password' className='bg-white  w-full py-2  px-4' />
-                    <button type='submit'>Send </button>
-                </form>
-            </Container>
+        <div className='bg-gray-100 pb-10 flex h-screen items-center justify-center gap-10'>
+            DASHBOARD
+            <Button onClick={handleLogout} >log out </Button>
         </div>
     )
 }
 
 export default Admin
+
+
+
+
+
+
+
+
+
+
+
+
+
