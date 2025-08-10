@@ -1,20 +1,43 @@
 import Container from '@/components/common/Container'
-import { Carousel, CarouselContent } from '@/components/ui/carousel'
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel'
 import React from 'react'
+import { getBanners } from "@/lib/cache";
+import Image from 'next/image';
+import prisma from '@/lib/prisma';
+import ProductCoparison from '../ProductCoparison';
 
-const Banner = () => {
+const Banner = async () => {
+  const banner = await prisma.banner.findMany()
+
   return (
-    <Container className='grid grid-cols-1 lg:grid-cols-4 gap-4 '>
-         <div className='lg:col-span-3 bg-amber-500'>
-          <Carousel>
-            <CarouselContent>
-              
-            </CarouselContent>
-          </Carousel>
-         </div>
-          <div className='col-span-1 bg-violet-600'>
-          search
-         </div>
+    <Container className='grid grid-cols-1 pt-5 lg:grid-cols-4 gap-2  '>
+      <div className='lg:col-span-3 rounded-md overflow-hidden '>
+
+        <Carousel >
+          <CarouselContent>
+            {banner?.map((p) => {
+              return (
+                <CarouselItem key={p.id}>
+                  <div className='relative  w-full aspect-[16/9] md:aspect-[21/9]  '>
+                    <Image priority alt="" fill
+                      className="object-content z-30" src={`${p.image}`} />
+                  </div>
+                </CarouselItem>)
+            })}
+          </CarouselContent>
+          <div className='absolute  bottom-10 left-1/2   z-40'>
+            <CarouselPrevious />
+            <CarouselNext />
+          </div>
+        </Carousel>
+      </div>
+      <div className='hidden lg:flex flex-col h-full gap-2 '>
+        <ProductCoparison/>
+        <div className='w-full relative h-1/2'>
+          <Image fill alt='smallBanner' className='object-cover rounded-md' src={"/smallBanner.jpg"}/>
+        </div>
+      </div>
+
     </Container>
   )
 }

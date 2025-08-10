@@ -1,8 +1,10 @@
+
 import type { Metadata } from "next";
 import { Montserrat, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Poppins } from "next/font/google";
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "700", "900"], variable: "--font-poppins" });
+import { Providers } from "@/components/snackProvider/providerSnack";
 
 // تحميل الخطوط وإعداد متغيرات CSS
 const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-montserrat" });
@@ -19,7 +21,11 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={poppins.className}>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <Providers>
+          {children}
+        </Providers>
+      </body>
     </html>
   );
 }

@@ -24,6 +24,6 @@ export async function POST(request: Request) {
         maxAge: 60 * 60,
     })
 
-    return NextResponse.json({ success: true, token }, { status: 200 });
+    return NextResponse.json({ success: true , msg : 'Logged in successfully' }, { status: 200 });
 
 }

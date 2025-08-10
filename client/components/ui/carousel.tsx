@@ -185,9 +185,9 @@ function CarouselPrevious({
       variant={variant}
       size={size}
       className={cn(
-        "absolute size-8 rounded-full",
+        "absolute size-8  rounded-full text-store border-store",
         orientation === "horizontal"
-          ? "top-1/2 -left-12 -translate-y-1/2"
+          ? "top-1/2 -left-12  hover:bg-store cursor-pointer hoverEffect hover:text-white"
           : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
         className
       )}
@@ -215,9 +215,9 @@ function CarouselNext({
       variant={variant}
       size={size}
       className={cn(
-        "absolute size-8 rounded-full",
+        "absolute size-8  text-store border-store  rounded-full",
         orientation === "horizontal"
-          ? "top-1/2 -right-12 -translate-y-1/2"
+          ? "top-1/2 -right-12  -translate-y-1/ hover:bg-store cursor-pointer hoverEffect hover:text-white"
           : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
         className
       )}

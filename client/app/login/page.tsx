@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import Container from '@/components/common/Container'
 import { tokenStore } from '@/app/store/token.store';
 import { useRouter } from 'next/navigation';
+import { SnackbarProvider, enqueueSnackbar } from 'notistack'
 
 const Login = () => {
     const router = useRouter()
@@ -16,6 +17,7 @@ const Login = () => {
         const formData = new FormData(e.currentTarget);
         const email = formData.get('email');
         const password = formData.get('password');
+      
         const response = await fetch('/api/admin/login', {
             method: 'POST',
             headers: {
@@ -25,18 +27,15 @@ const Login = () => {
            
         })
         const data = await response.json();
-       
         if (data.success) {
-            setToken(data.token)
-            localStorage.setItem('token', data.token)
-            setIsAdmin(true)
+            enqueueSnackbar(data.msg, { variant: 'success' })
             router.push('/admin')
+            
         }
     }
 
     return (
         <div className='bg-gray-100 pb-10 flex h-screen items-center justify-center'>
-
             <Container className='flex flex-col h-screen items-center justify-center gap-4'>
                 <h1 className='text-4xl font-black'>ADMIN PANEL</h1>
                 <form action="" onSubmit={onSubmit} className='flex flex-col gap-4 p-4 max-w-[450px] w-[450px]'>
