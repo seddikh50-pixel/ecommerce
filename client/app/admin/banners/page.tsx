@@ -8,13 +8,13 @@ const Page = async () => {
 
 
   const getBanners = await prisma.banner.findMany()
-  console.log(getBanners)
+
   return (
     <div className='flex'>
-      <div className='w-72 p-4'>
+      <div className="w-96 p-4 h-[calc(100vh-3.5rem)] border border-gray-600 border-t-0 overflow-y-scroll stylish-scroll ">
         <ListBanners banners={getBanners} />
       </div>
-      <div className='flex-1 p-4'>
+      <div className='flex-1 p-4 '>
         <BannerForm />
       </div>
     </div>

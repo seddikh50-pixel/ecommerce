@@ -37,7 +37,7 @@ const SideBar = () => {
     }
   ]
   return (
-    <div className='w-64 pt-5 flex flex-col space-y-5 bg-black/90' style={{ height: "calc(100vh - 56px)" }}>
+    <div className='w-64 pt-5 flex flex-col space-y-5 border border-gray-700 border-t-0 bg-black/90' style={{ height: "calc(100vh - 56px)" }}>
      
       <div className='space-y-5 px-4'>
         {dashLinks.map((link, index) => {

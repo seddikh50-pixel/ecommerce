@@ -1,22 +1,37 @@
 import prisma from "@/lib/prisma"
 import { NextRequest, NextResponse } from "next/server"
+import path from "path"
+import { promises as fs } from 'fs'
+
 
 interface Params {
-    id  : string
+    id: string
 }
-export async function DELETE(request: NextRequest, { params } : { params : Params} ) {
-   
-    const  {id}  = params
-  
+export async function DELETE(request: NextRequest, { params }: { params :Params }) {
+
+    const { id } = await params
+
+    const banner = await prisma.banner.findUnique({
+        where: { id }
+    });
+    console.log(banner)
+
     try {
-        const deleted = await prisma.banner.delete({
+        await prisma.banner.delete({
             where: {
                 id
             }
         })
-        return NextResponse.json({success : true , message : 'banner deleted successfully'})
+
+        if (banner?.image) {
+            const filePath = path.join(process.cwd(), "public", banner.image);
+            await fs.unlink(filePath);
+        }
+
+
+        return NextResponse.json({ success: true, message: 'banner deleted successfully' })
     } catch (error) {
-         return NextResponse.json({success : false , message : 'failed deleted' ,error})
+        return NextResponse.json({ success: false, message: 'failed deleted', error })
     }
- 
+
 }

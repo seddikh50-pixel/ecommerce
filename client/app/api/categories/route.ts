@@ -12,7 +12,7 @@ export async function POST(request: NextRequest) {
         const file = formData.get('image') as File;
         
         if (!name || file.size === 0) {
-            return NextResponse.json({ success: false, msg: "image and category required" }, {})
+            return NextResponse.json({ success: false, msg: "image and name are required" }, {})
         }
         await prisma.category.create({
             data: {
@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
                 image: `/categories/${name}.jpg`
             }
         })
-
+        
 
         // إذا تريد حفظ الصورة في السيرفر
         const arrayBuffer = await file.arrayBuffer();

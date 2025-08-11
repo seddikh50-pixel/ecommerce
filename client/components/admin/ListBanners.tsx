@@ -1,11 +1,9 @@
 "use client"
 import { X } from 'lucide-react';
-import { fetchExternalImage } from 'next/dist/server/image-optimizer';
 import Image from 'next/image';
 import React from 'react'
-import { SnackbarProvider, enqueueSnackbar, useSnackbar } from 'notistack'
-
-
+import { useSnackbar } from 'notistack'
+import Swal from "sweetalert2"
 import { useRouter } from 'next/navigation';
 
 
@@ -21,34 +19,46 @@ interface ListBannersProps {
 }
 
 const ListBanners = ({ banners }: ListBannersProps) => {
+
     const router = useRouter()
     const { enqueueSnackbar } = useSnackbar()
 
 
     const deleteBanner = async (id: string) => {
-       
-        try {
-            const response = await fetch(`/api/banners/${id}`,
-                {
-                    method: "DELETE"
+        Swal.fire({
+            title: "هل أنت متأكد؟",
+            text: "لا يمكن التراجع بعد الحذف!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "نعم، احذف",
+            cancelButtonText: "إلغاء",
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    const response = await fetch(`/api/banners/${id}`,
+                        {
+                            method: "DELETE"
+                        }
+                    )
+                    const data = await response.json()
+                    console.log(data)
+                    if (data.success) {
+                        enqueueSnackbar(data.message, { variant: 'success' })
+                        router.push('/admin/banners')
+                    }
+                } catch (error) {
+                    console.log(error)
                 }
-            )
-            const data = await response.json()
-
-            if (data.success) {
-                enqueueSnackbar(data.message, { variant: 'success' })
-                router.push('/admin/banners')
             }
-        } catch (error) {
-            console.log(error)
-        }
-
+        })
     }
     return (
-        <div className='flex flex-col gap-3 border-r px-3 hover: '>
+        <div className='flex flex-col gap-3  px-3 hover: '>
 
 
-            <h1 className='font-bold text-xl'>All Banners</h1>
+            <h1 className='font-bold text-xl text-white'>All Banners</h1>
             {banners.map((banner) => {
                 return (
                     <div key={banner.id} className='flex justify-between items-center'>

@@ -1,8 +1,13 @@
+import Link from 'next/link'
 import React from 'react'
 
 const page = () => {
   return (
-    <div>products</div>
+    <div>
+      <div>
+          <Link href={"products/add"} className='text-white'>Add Product</Link>
+      </div>
+    </div>
   )
 }
 

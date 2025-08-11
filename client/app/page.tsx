@@ -13,8 +13,6 @@ export default async function Home() {
        
       <Header/>
       <div className="flex justify-evenly" >
-        
-    
       </div>
     <div className="bg-gray-100 pb-10">
      <Banner/>

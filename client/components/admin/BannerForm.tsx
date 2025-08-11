@@ -11,7 +11,7 @@ import { useRouter } from 'next/navigation';
 
 const BannerForm = () => {
     const router = useRouter()
-    const sendImage = async (event: React.FormEvent<HTMLFormElement>) => {
+    const addBanner = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         const formData = new FormData(event.currentTarget);
         try {
@@ -51,23 +51,61 @@ const BannerForm = () => {
     }
 
     return (
-        <div>
-            <h1 className='mb-10'>Add New Banner</h1>
-            <div>
-                <form action="" onSubmit={sendImage} className='flex relative flex-col gap-4 max-w-64'>
-                    <div className='relative  rounded-lg overflow-hidden max-w-64 h-36 flex w-64  max-h-44 '>
-                        {preview && <X className='absolute w-5 h-5 right-2 cursor-pointer bg-gray-300 rounded-full hover:bg-gray-100 text-gray-600 hoverEffect top-2 ' onClick={() => setPreview('')} />}
-                        <input id='inputFile' className='hidden' name='image' type="file" onChange={handlePreview} />
-                        {/* <label className="cursor-pointer rounded-md  bg-blue-300 w-full h-full  text-white" htmlFor="inputFile"><Image className='object-cover'  width={256} height={144} alt=''  priority  src={"/uploads/fg.png"} /></label> */}
-                        {!preview ? <label className="cursor-pointer rounded-md   w-full h-full  text-white" htmlFor="inputFile"><Image width={256} className='object-center -translate-y-15' height={144} alt='' priority src={"/uploads/fg.jpg"} /></label> :
-                            <Image style={{ width: "auto", height: "auto" }} width={200} height={100} alt='' src={preview} />}
-
-                    </div>
-                    <Button disabled={!preview} type='submit'>Add Banner</Button>
-                </form>
-            </div>
-
-        </div>
+       <div className="p-6 bg-gray-900 rounded-xl shadow-lg max-w-md  ">
+                  {/* عنوان */}
+                  <h1 className="mb-8 text-2xl font-semibold text-white  pb-2">
+                      Add New Banner
+                  </h1>
+      
+                  <form
+                      onSubmit={addBanner}
+                      className="flex flex-col gap-5"
+                  >    
+                      {/* إدخال الصورة */}
+                      <div className="relative max-w-96 rounded-lg  border-2 border-dashed border-gray-400 hover:border-blue-500 transition-all duration-300 h-42 overflow-hidden flex items-center justify-center bg-gray-5    0">
+                          {preview && (
+                              <X
+                                  className="absolute w-6 h-6 right-2 top-2 cursor-pointer bg-gray-200 rounded-full p-1 text-gray-600 hover:bg-gray-300 z-20"
+                                  onClick={() => setPreview('')}
+                              />
+                          )}
+      
+                          <input
+                              id="inputFile"
+                              className="hidden"
+                              name="image"
+                              type="file"
+                              onChange={handlePreview}
+                          />
+      
+                          {!preview ? (
+                              <label
+                                  htmlFor="inputFile"
+                                  className="cursor-pointer flex flex-col items-center justify-center text-gray-500"
+                              >
+                                  <span className="mt-2 absolute inset-0 flex justify-center items-center text-lg font-bold text-gray-400">
+                                      Upload an image
+                                  </span>
+                              </label>
+                          ) : (
+                              <Image
+                                  fill
+                                  alt="category"
+                                  className="object-contain bg-white"
+                                  src={preview}
+                              />
+                          )}
+                      </div>
+      
+                      {/* زر الإضافة */}
+                      <Button
+                          type="submit"
+                          className="bg-black w-full max-w-96 border-white border hover:bg-gray-700 text-white font-medium py-2 px-4 rounded-lg transition-colors"
+                      >
+                          Add Banner
+                      </Button>
+                  </form>
+              </div>
     )
 }
 

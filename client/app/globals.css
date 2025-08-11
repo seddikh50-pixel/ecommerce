@@ -143,3 +143,25 @@ h1, h2, h3, h4, h5, h6 {
     @apply transition-all cursor-pointer  ease-in-out;
   }
 }
+
+.stylish-scroll::-webkit-scrollbar {
+  width: 15px;
+}
+
+/* الخلفية وراء السكروول */
+.stylish-scroll::-webkit-scrollbar-track {
+  background: #000; /* أسود */
+  /* border-radius: 1px; */
+}
+
+/* لون شريط السكروول */
+.stylish-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ffffff, #bbbbbb);
+  border-radius: 4px;
+  border: 2px solid #000; /* يعطي فراغ بين السكروول والخلفية */
+}
+
+/* عند المرور بالماوس */
+.stylish-scroll::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #e0e0e0, #999999);
+}

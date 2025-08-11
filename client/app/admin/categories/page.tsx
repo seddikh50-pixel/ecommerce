@@ -7,10 +7,9 @@ const page = async () => {
   const categories = await prisma.category.findMany()
 
   return (
-    <div className='flex'>
-
+    <div className='flex gap-10 '>
       <CategoryForm />
-      <div className='text-white'>
+      <div className='text-white  flex-1 '>
         <ListCategories categories={categories}/>
       </div>
 

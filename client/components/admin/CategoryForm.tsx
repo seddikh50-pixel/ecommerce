@@ -9,12 +9,15 @@ import { useRouter } from 'next/navigation';
 
 
 
+
 const CategoryForm = () => {
     const router = useRouter()
+    const [preview, setPreview] = useState<string>('');
     const addCategory = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         const formData = new FormData(event.currentTarget);
-        
+      
+
         try {
             const response = await fetch('/api/categories',
                 {
@@ -37,8 +40,8 @@ const CategoryForm = () => {
     }
 
 
-    const [preview, setPreview] = useState<string>('');
-    const [image, setImage] = useState<File | null>()
+
+    // const [image, setImage] = useState<File | null>()
 
 
 
@@ -48,31 +51,84 @@ const CategoryForm = () => {
         const file = e.target.files?.[0]
 
         if (file) {
-            setImage(file)
+            // setImage(file)
             setPreview(URL.createObjectURL(file))
         }
     }
 
     return (
-        <div>
-            <h1 className='mb-10'>Add New Banner</h1>
-            <div>
-                <form action="" onSubmit={addCategory} className='flex relative flex-col gap-4 max-w-64'>
-                    <input type="text" name="name" className='bg-white' id="" />
-                    <div className='relative  rounded-lg overflow-hidden max-w-64 h-36 flex w-64  max-h-44 '>
-                        {preview && <X className='absolute w-5 z-20 h-5 right-2 cursor-pointer bg-gray-300 rounded-full hover:bg-gray-100 text-gray-600 hoverEffect top-2 ' onClick={() => setPreview('')} />}
+        <div className="p-6 bg-gray-900 rounded-xl shadow-lg max-w-md">
+            {/* عنوان */}
+            <h1 className="mb-8 text-2xl font-semibold text-white  pb-2">
+                Add New Category
+            </h1>
 
-                        <input id='inputFile' className='hidden' name='image' type="file" onChange={handlePreview} />
-                        {!preview ? <label className="cursor-pointer rounded-md   w-full h-full  text-white" htmlFor="inputFile"><Image width={256} className='object-center -translate-y-15' height={144} alt='' priority src={"/uploads/fg.jpg"} /></label> :
-                            <Image fill  alt='category' className='bg-white' src={preview} />}
+            <form
+                onSubmit={addCategory}
+                className="flex flex-col gap-5"
+            >
+                {/* إدخال الاسم */}
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Category Name"
+                    className="px-4 py-2 placeholder:text-gray-400 text-white rounded-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
 
-                    </div>
-                    <Button type='submit'>Add Categoryddd</Button>
-                </form>
-            
-            </div>
+                {/* إدخال الصورة */}
+                <div className="relative rounded-sm overflow-hidden border-2 border-dashed border-gray-400 hover:border-blue-500 transition-all duration-300 h-36 flex items-center justify-center bg-gray-50">
+                    {preview && (
+                        <X
+                            className="absolute w-6 h-6 right-2 top-2 cursor-pointer bg-gray-200 rounded-full p-1 text-gray-600 hover:bg-gray-300 z-20"
+                            onClick={() => setPreview('')}
+                        />
+                    )}
 
+                    <input
+                        id="inputFile"
+                        className="hidden"
+                        name="image"
+                        type="file"
+                        onChange={handlePreview}
+                    />
+
+                    {!preview ? (
+                        <label
+                            htmlFor="inputFile"
+                            className="cursor-pointer flex flex-col items-center justify-center text-gray-500"
+                        >
+                            {/* <Image
+                                className="object-contain"
+                                fill
+                                alt=""
+                                priority
+                                src="/uploads/fg.png"
+                            /> */}
+                            <span className="mt-2 absolute inset-0 flex justify-center items-center text-lg font-bold text-gray-400">
+                                Upload an image
+                            </span>
+                        </label>
+                    ) : (
+                        <Image
+                            fill
+                            alt="category"
+                            className="object-contain bg-white"
+                            src={preview}
+                        />
+                    )}
+                </div>
+
+
+                {/* زر الإضافة */}
+                <Button
+                    type="submit"
+                    className="bg-black border-white border hover:bg-white hover:text-black hoverEffect white text-white font-medium py-2 px-4 rounded-sm transition-colors"
+                >
+                    Add Category
+                </Button>
+            </form>
         </div>
+
     )
 }
 

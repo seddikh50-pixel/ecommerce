@@ -10,9 +10,8 @@ const Banner = async () => {
   const banner = await prisma.banner.findMany()
 
   return (
-    <Container className='grid grid-cols-1 pt-5 lg:grid-cols-4 gap-2  '>
+    <Container className='grid grid-cols-1 pt-5 lg:grid-cols-4 gap-2 h-max    '>
       <div className='lg:col-span-3 rounded-md overflow-hidden '>
-
         <Carousel >
           <CarouselContent>
             {banner?.map((p) => {
