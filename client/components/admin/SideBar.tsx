@@ -1,7 +1,7 @@
 "use client"
 import React from 'react'
 import Link from 'next/link'
-import { ChartBarStacked, ChevronRight, Notebook, ShoppingBasket, ShoppingCart, Trello } from 'lucide-react'
+import { ChartBarStacked, ChevronRight, Notebook, NotebookIcon, ShoppingBasket, ShoppingCart, Trello } from 'lucide-react'
 import { useParams, usePathname } from 'next/navigation'
 
 
@@ -34,6 +34,11 @@ const SideBar = () => {
       link: "Orders",
       icon: <ShoppingBasket />,
       href: '/admin/orders'
+    },
+    {
+      link: "Blogs",
+      icon: <NotebookIcon />,
+      href: '/admin/blogs'
     }
   ]
   return (

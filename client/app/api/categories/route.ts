@@ -6,8 +6,7 @@ export async function POST(request: NextRequest) {
 
     try {
 
-        const formData = await request.formData();
-        
+        const formData = await request.formData();   
         const name = formData.get('name') as string;
         const file = formData.get('image') as File;
         

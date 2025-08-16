@@ -41,5 +41,15 @@ model Category {
 model Brand {
   id       String    @id @default(uuid())
   name     String
+  image    String
   products Product[]
+}
+
+
+model Blog {
+   id       String    @id @default(uuid())
+  image     String
+  title     String          // عنوان البلوق
+  content   String          // النص الكبير (المقال)
+  createdAt DateTime @default(now())
 }

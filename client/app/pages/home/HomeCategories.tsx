@@ -9,7 +9,7 @@ import Link from 'next/link'
 
 const HomeCategories = async () => {
   const categories = await prisma.category.findMany()
-  console.log(categories)
+
 
   const data = [
     {
