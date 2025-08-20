@@ -1,4 +1,4 @@
-import Footer from "@/components/common/Footer";
+
 import Header from "@/components/header/Header";
 import Image from "next/image";
 import Banner from "./pages/home/Banner";
@@ -8,12 +8,15 @@ import ProductGrid from "./pages/home/ProductGrid";
 import Text from "./pages/home/Text";
 import ShopByBrand from "./pages/home/ShopByBrand";
 import LatestBlog from "./pages/home/LatestBlog";
+import FooterTop from "@/components/foooter/FooterTop";
+import Footer from "@/components/foooter/Footer";
+import CartMenu from "@/components/common/CartMenu";
 
 
 export default async function Home() {
 
   return (
-    <div >
+    <div  >
 
       <Header />
       {/* <div className="flex justify-evenly" >
@@ -31,7 +34,9 @@ export default async function Home() {
         <ShopByBrand />
         <LatestBlog />
       </div>
+      <FooterTop />
       <Footer />
+        <CartMenu/>
 
     </div>
   );

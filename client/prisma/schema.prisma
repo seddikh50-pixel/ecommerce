@@ -21,7 +21,7 @@ model Banner {
 
 model Product {
   id          String   @id @default(uuid())
-  name        String
+  name        String @unique
   images      String[]
   price       String
   description String

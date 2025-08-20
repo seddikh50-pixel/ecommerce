@@ -1,11 +1,11 @@
 import Container from '@/components/common/Container'
-import prisma from '@/lib/prisma'
+import { getAllBrands } from '@/lib/cache'
 import { GitCompareArrows, Headset, ShieldCheck, Truck } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
 
 const ShopByBrand = async() => {
-    const brands = await prisma.brand.findMany()
+    const brands = await getAllBrands()
 
     const extraData = [
       {

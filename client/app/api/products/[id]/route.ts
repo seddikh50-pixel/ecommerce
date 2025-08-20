@@ -2,6 +2,7 @@ import prisma from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 import path from "path"
 import  {promises as fs} from 'fs'
+import { revalidateTag } from "next/cache";
 
 interface Params {
     id : string
@@ -26,6 +27,7 @@ export async function DELETE(request : NextRequest, {params} : {params : Params}
     await prisma.product.delete({
         where : {id}
     })
+        revalidateTag("all-products")
 
      
         // const filePath = path.join(process.cwd(), "public" , images.image)

@@ -14,9 +14,10 @@ const Header = () => {
     <header className="bg-black h-20 text-white/80 sticky top-0 z-50 backdrop:blur-md">
       <Container className="flex gap-3 items-center justify-between py-4">
         <div className="flex items-center justify-start gap-2 ">
-            <MobileMenu/>
-          <Link href={'/'} className="text-2xl font-bold text-store whitespace-nowrap mr-5 bg-amber-50   ">
-          <Image src={'/storelogo.png'} width={65} alt="logo" height={65}/> </Link>
+          <MobileMenu />
+          <Link href={'/'} className="text-2xl relative w-15 h-12 font-bold text-store whitespace-nowrap mr-5   ">
+            <Image src={'/storelogo.png'} fill alt="logo" />
+          </Link>
         </div>
         <div className="flex lg:flex-1 items-center gap-5">
           <Searchbar />

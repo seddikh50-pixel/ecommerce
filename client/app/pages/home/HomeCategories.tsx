@@ -2,13 +2,13 @@ import Container from '@/components/common/Container'
 import { ChartArea, FileQuestion, Laptop, Settings } from 'lucide-react'
 import React from 'react'
 import Text from './Text'
-import prisma from '@/lib/prisma'
 import Image from 'next/image'
 import Link from 'next/link'
+import { getAllCategories } from '@/lib/cache'
 
 
 const HomeCategories = async () => {
-  const categories = await prisma.category.findMany()
+  const categories = await getAllCategories()
 
 
   const data = [

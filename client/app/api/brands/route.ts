@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import { writeFile } from "fs/promises";
+import { revalidateTag } from "next/cache";
 
 export async function POST(request: NextRequest) {
 
@@ -25,7 +26,7 @@ export async function POST(request: NextRequest) {
         })
 
 
-
+       revalidateTag("all-brands")
         return NextResponse.json({ msg: 'brand added successfuly', success: true }, { status: 201 })
     } catch (error) {
         return NextResponse.json({ msg: error, success: false }, { status: 404 });

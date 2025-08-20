@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import { writeFile } from "fs/promises";
+import { revalidateTag } from "next/cache";
 
 export async function POST(request: NextRequest) {
 
@@ -10,7 +11,7 @@ export async function POST(request: NextRequest) {
         const content = formData.get('content') as string;
         const title = formData.get('title') as string;
         const image = formData.get('image') as File;
-        if (!title || !content  || image.size === 0) {
+        if (!title || !content || image.size === 0) {
             return NextResponse.json({ success: false, msg: "image and name are required" }, {})
         }
         const arrayBuffer = await image.arrayBuffer();
@@ -24,7 +25,7 @@ export async function POST(request: NextRequest) {
             }
         })
 
-
+        revalidateTag("all-blogs")
 
         return NextResponse.json({ msg: 'blog added successfuly', success: true }, { status: 201 })
     } catch (error) {

@@ -4,6 +4,8 @@ import { NextResponse } from 'next/server';
 import path from 'path';
 import { promises as fs } from 'fs';
 import { writeFile } from 'fs/promises';
+import { revalidateTag } from 'next/cache';
+
 
 export async function GET(request: Request) {
 
@@ -38,7 +40,7 @@ export async function POST(request: Request) {
         savePromises.push(saveImage(image))
       }
     }
-    console.log("==>" + "-" + images)
+
     await Promise.all(savePromises)
 
     await prisma.product.create({
@@ -51,6 +53,7 @@ export async function POST(request: Request) {
         brandId
       }
     })
+    revalidateTag("all-products")
     return NextResponse.json({ msg: 'product added successfully', success: true })
   } catch (error) {
     return NextResponse.json({ msg: error })

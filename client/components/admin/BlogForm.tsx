@@ -5,6 +5,8 @@ import { Button } from '@/components/ui/button';
 import { Upload, X } from 'lucide-react';
 import { SnackbarProvider, enqueueSnackbar } from 'notistack'
 import { useRouter } from 'next/navigation';
+import { Textarea } from "@/components/ui/textarea"
+
 
 
 
@@ -76,7 +78,7 @@ const BlogForm = () => {
                     placeholder="Title"
                     className="px-4 py-2 placeholder:text-gray-400 text-white rounded-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-                 <textarea
+                 <Textarea
                     name="content"
                     placeholder="Blog"
                     className="px-4 py-2 placeholder:text-gray-400 text-white rounded-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"

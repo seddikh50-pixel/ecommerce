@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { writeFile } from 'fs/promises';
 import prisma from "@/lib/prisma";
 
+
 export async function GET() {
     // This function would typically fetch banners from a database or an external API
     const banners = [
@@ -32,6 +33,8 @@ export async function POST(request: Request) {
 
         // مثال: حفظ الصورة في مجلد داخل project
         await writeFile(`./public/banners/banner${count + 1}.jpg`, buffer);
+      
+
         return NextResponse.json({ message: 'Banner added successfuly', success: true }, { status: 201 });
     } catch (error) {
         return NextResponse.json({ message: "something went wrong ", success: false, msg: error }, { status: 404 });

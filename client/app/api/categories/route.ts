@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import { writeFile } from 'fs/promises';
+import { revalidateTag } from "next/cache";
 
 export async function POST(request: NextRequest) {
 
@@ -20,7 +21,7 @@ export async function POST(request: NextRequest) {
             }
         })
         
-
+        revalidateTag("all-categories")
         // إذا تريد حفظ الصورة في السيرفر
         const arrayBuffer = await file.arrayBuffer();
 
