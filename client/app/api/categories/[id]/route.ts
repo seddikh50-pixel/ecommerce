@@ -2,6 +2,7 @@ import prisma from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 import path from "path"
 import  {promises as fs} from 'fs'
+import { revalidateTag } from "next/cache";
 
 interface Params {
     id : string
@@ -24,6 +25,7 @@ export async function DELETE(request : NextRequest, {params} : {params : Params}
         const filePath = path.join(process.cwd(), "public" , categoryImage.image)
         await fs.unlink(filePath)
     }
+        revalidateTag("categories")
      
       return NextResponse.json({ success: true, message: 'category deleted successfully' })
     } catch (error) {

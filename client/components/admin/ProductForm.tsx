@@ -41,7 +41,6 @@ const ProductForm = ({ categories, brands }: Props) => {
     const addProduct = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         const formData = new FormData(event.currentTarget);
-        console.log(formData.get('image1'))
 
         try {
             const response = await fetch("/api/products",
@@ -51,11 +50,13 @@ const ProductForm = ({ categories, brands }: Props) => {
                 }
             )
             const data = await response.json()
-            console.log(data)
             if (data.success) {
                 enqueueSnackbar(data.msg, { variant: 'success' })
                 route.push('/admin/products ')
+            }else{
+               enqueueSnackbar(data.msg, { variant: 'error' }) 
             }
+            
 
         } catch (error) {
             console.log(error)

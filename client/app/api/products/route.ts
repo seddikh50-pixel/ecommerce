@@ -26,6 +26,7 @@ export async function POST(request: Request) {
     const categoryId = formData.get('category') as string
     const brandId = formData.get('brand') as string
     const savePromises = [];
+   
 
     for (let index = 1; index <= 4; index++) {
       const image = formData.get(`image${index}`) as File
@@ -42,7 +43,6 @@ export async function POST(request: Request) {
     }
 
     await Promise.all(savePromises)
-
     await prisma.product.create({
       data: {
         name,
@@ -53,9 +53,16 @@ export async function POST(request: Request) {
         brandId
       }
     })
-    revalidateTag("all-products")
+    revalidateTag("products")
     return NextResponse.json({ msg: 'product added successfully', success: true })
-  } catch (error) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error : any) {
+     if (error.code === "P2002" && error.meta?.target?.includes("name")) {
+    return NextResponse.json({ 
+      msg: "يوجد منتج بهذا الاسم, يرجى اختيار اسم اخر", 
+      success: false 
+    });
+  }
     return NextResponse.json({ msg: error })
   }
 }

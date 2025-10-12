@@ -6,6 +6,10 @@ import { Poppins } from "next/font/google";
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "700", "900"], variable: "--font-poppins" });
 import { Providers } from "@/components/snackProvider/ProviderSnack";
 import CartMenu from "@/components/common/CartMenu";
+import Header from "@/components/header/Header";
+import FooterTop from "@/components/foooter/FooterTop";
+import Footer from "@/components/foooter/Footer";
+import { usePathname } from "next/navigation";
 
 // تحميل الخطوط وإعداد متغيرات CSS
 const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-montserrat" });
@@ -20,6 +24,7 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+
   return (
     <html lang="en" className={poppins.className}>
       <body className="antialiased" >

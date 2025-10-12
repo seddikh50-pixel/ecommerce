@@ -1,16 +1,16 @@
 
 import Header from "@/components/header/Header";
 import Image from "next/image";
-import Banner from "./pages/home/Banner";
 import { prisma } from "@/lib/prisma";
-import HomeCategories from "./pages/home/HomeCategories";
-import ProductGrid from "./pages/home/ProductGrid";
-import Text from "./pages/home/Text";
-import ShopByBrand from "./pages/home/ShopByBrand";
-import LatestBlog from "./pages/home/LatestBlog";
 import FooterTop from "@/components/foooter/FooterTop";
 import Footer from "@/components/foooter/Footer";
 import CartMenu from "@/components/common/CartMenu";
+import HomeCategories from "../pages/home/HomeCategories";
+import Banner from "../pages/home/Banner";
+import Text from "../pages/home/Text";
+import ProductGrid from "../pages/home/ProductGrid";
+import ShopByBrand from "../pages/home/ShopByBrand";
+import LatestBlog from "../pages/home/LatestBlog";
 
 
 export default async function Home() {
@@ -18,7 +18,6 @@ export default async function Home() {
   return (
     <div  >
 
-      <Header />
       {/* <div className="flex justify-evenly" >
       </div> */}
       <div className="bg-gray-100 pb-10">
@@ -34,9 +33,7 @@ export default async function Home() {
         <ShopByBrand />
         <LatestBlog />
       </div>
-      <FooterTop />
-      <Footer />
-        <CartMenu/>
+
 
     </div>
   );

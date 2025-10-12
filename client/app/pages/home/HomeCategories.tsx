@@ -9,6 +9,7 @@ import { getAllCategories } from '@/lib/cache'
 
 const HomeCategories = async () => {
   const categories = await getAllCategories()
+  console.log(categories)
 
 
   const data = [

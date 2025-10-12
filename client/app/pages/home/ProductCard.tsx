@@ -1,3 +1,4 @@
+
 import { Button } from '@/components/ui/button';
 import prisma from '@/lib/prisma';
 import { ShoppingCartIcon } from 'lucide-react';
@@ -5,6 +6,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react'
 import PriceFormatter from './PriceFormatter';
+
+
 
 interface Category {
     id: string
@@ -23,10 +26,12 @@ interface Product {
 };
 
 
+
+
 const ProductCard = async ({ product }: { product: Product }) => {
 
     return (
-        <div className='flex flex-col w-full justify-start space-y-1 px-3 gap-1 rounded-md group'>
+        <div    className='flex flex-col w-full justify-start space-y-1 px-3 gap-1 rounded-md group'>
             <Link href={`/product/${product.name}`} className='w-full h-44 relative'>
                 <Image loading='lazy' alt={product.images[0]} src={product.images[0]} fill className=' object-contain group-hover:scale-110 hoverEffect' />
             </Link>

@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
             }
         })
         
-        revalidateTag("all-categories")
+        revalidateTag("categories")
         // إذا تريد حفظ الصورة في السيرفر
         const arrayBuffer = await file.arrayBuffer();
 
