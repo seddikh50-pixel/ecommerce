@@ -7,7 +7,6 @@ import React from 'react'
 
 const LatestBlog = async () => {
   const blogs = await getAllBlogs()
-  console.log(blogs)
 
 
   return (

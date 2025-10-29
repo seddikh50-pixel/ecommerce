@@ -10,7 +10,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
       {children}
       <FooterTop />
       <Footer />
-       <CartMenu/>
+      <CartMenu />
     </>
   );
 }

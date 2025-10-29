@@ -29,6 +29,8 @@ model Product {
   category    Category @relation(fields: [categoryId], references: [id])
   brandId     String
   brand       Brand    @relation(fields: [brandId], references: [id])
+  isStocked   Boolean @default(true)
+  
 }
 
 model Category {
@@ -51,5 +53,16 @@ model Blog {
   image     String
   title     String          // عنوان البلوق
   content   String          // النص الكبير (المقال)
+  createdAt DateTime @default(now())
+}
+
+
+
+model User {
+  id       String   @id
+  email    String   @unique
+  name     String?
+  picture  String?
+  cart     Json?    // نخزن هنا مصفوفة المنتجات
   createdAt DateTime @default(now())
 }

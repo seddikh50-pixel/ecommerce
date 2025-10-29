@@ -27,6 +27,7 @@ const ProductForm = ({ categories, brands }: Props) => {
     const [image2, setImage2] = useState<string>('');
     const [image3, setImage3] = useState<string>('');
     const [image4, setImage4] = useState<string>('');
+    const [isStocked, setIsStocked] = useState(true);
 
     const handleImage = (
         event: React.ChangeEvent<HTMLInputElement>,
@@ -53,10 +54,10 @@ const ProductForm = ({ categories, brands }: Props) => {
             if (data.success) {
                 enqueueSnackbar(data.msg, { variant: 'success' })
                 route.push('/admin/products ')
-            }else{
-               enqueueSnackbar(data.msg, { variant: 'error' }) 
+            } else {
+                enqueueSnackbar(data.msg, { variant: 'error' })
             }
-            
+
 
         } catch (error) {
             console.log(error)
@@ -141,6 +142,12 @@ const ProductForm = ({ categories, brands }: Props) => {
                                 <option key={index} value={brand.id}>{brand.name}</option>
                             ))}
                         </select>
+                    </div>
+                    <div>
+                        <label>
+                            <input type="checkbox" name="isStocked"  />
+                            <span className='pl-2'>isStocked</span>
+                        </label>
                     </div>
                     <button type="submit" className='bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition'>Add Product</button>
                 </form>

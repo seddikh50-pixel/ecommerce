@@ -29,12 +29,12 @@ const ImageView = ({ images }: ImageProps) => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
             className='absolute inset-0 bg-black/50 z-50 flex justify-center items-center h-screen ' >
-            <div className='sm:w-[70%] lg:w-150  sm:h-80 md:w-120 md:h-96 xl:h-140  xl:w-180  bg-white relative flex justify-center items-center'>
+            <div className='sm:w-[70%] lg:w-150  sm:h-80 md:w-120 md:h-96 xl:h-140  xl:w-180  rounded-md  bg-white relative flex justify-center items-center'>
               <X onClick={() => {
                 setOpenModel(false)
                 document.body.style.overflow = "auto"
 
-              }} width={30} height={30} className='absolute  z-20 top-5 right-5 text-7xl hoverEffect text-black rounded-full border p-1 hover:bg-violet-500  ' />
+              }} width={30} height={30} className='absolute hover:text-white  z-20 top-5 right-5 text-7xl hoverEffect text-black rounded-full border p-1 hover:bg-violet-500  ' />
               <Carousel className='w-full h-full flex justify-center items-center' opts={{ startIndex: images.findIndex((img) => img === active) }}>
                 <CarouselContent className='h-full w-full'>
                   {images.map((img, index) => {
@@ -74,7 +74,7 @@ const ImageView = ({ images }: ImageProps) => {
               src={active}
               alt="image"
               fill
-              className="object-cover"
+              className="object-cover hover:scale-110 hoverEffect"
             />
           </motion.div>
         </AnimatePresence>
@@ -87,7 +87,7 @@ const ImageView = ({ images }: ImageProps) => {
             key={index}
             onClick={() => setActive(img)}
           >
-            <Image src={img} alt="img" fill className="object-cover" />
+            <Image src={img} alt="img" fill className="object-contain" />
           </div>
         ))}
       </div>

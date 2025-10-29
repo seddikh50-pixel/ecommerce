@@ -5,16 +5,12 @@ import "./globals.css";
 import { Poppins } from "next/font/google";
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "700", "900"], variable: "--font-poppins" });
 import { Providers } from "@/components/snackProvider/ProviderSnack";
-import CartMenu from "@/components/common/CartMenu";
-import Header from "@/components/header/Header";
-import FooterTop from "@/components/foooter/FooterTop";
-import Footer from "@/components/foooter/Footer";
-import { usePathname } from "next/navigation";
+
 
 // تحميل الخطوط وإعداد متغيرات CSS
-const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-montserrat" });
-const geist = Geist({ subsets: ["latin"], variable: "--font-geist" });
-const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" });
+// const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-montserrat" });
+// const geist = Geist({ subsets: ["latin"], variable: "--font-geist" });
+// const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" });
 
 export const metadata: Metadata = {
   title: "Create Next App",

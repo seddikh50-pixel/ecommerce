@@ -8,8 +8,12 @@ import Footer from '@/components/foooter/Footer';
 import FooterTop from '@/components/foooter/FooterTop';
 import ImageView from '@/app/pages/singleProduct/ImageView';
 import ShareBadge from '../../../pages/singleProduct/ShareBadge'
-import { Images } from 'lucide-react';
+import DetailsView from '@/app/pages/singleProduct/DetailsView';
+
+import { Heart, Images, ShoppingBag, ShoppingBasket, Star, StarIcon } from 'lucide-react';
+// import ProductCharastiristics from '@/components/common/ProductCharastiristics'
 import Image from 'next/image';
+import { Button } from '@/components/ui/button';
 interface Params {
   params: {
     slug: string;
@@ -17,11 +21,11 @@ interface Params {
 }
 
 const SingleProduct = async ({ params }: Params) => {
-  
+
   const { slug } = await params
   const productName = decodeURIComponent(slug);
   const product = (await getAllProducts()).filter((pro) => { return pro.name === productName })[0]
-
+  console.log(product)
 
   if (!product) {
     return <NotFound />
@@ -29,18 +33,16 @@ const SingleProduct = async ({ params }: Params) => {
 
   return (
     <div className=' h-screen'>
-      
-      
+
+
       <Container>
         <ShareBadge />
-    
+
         <div className='flex flex-col md:flex-row gap-5 '>
           <div className=' w-full md:w-2/5'>
             <ImageView images={product?.images} />
           </div>
-           <div className='bg-violet-500 w-full md:w-3/5'>
-            Details
-          </div>
+          <DetailsView product={product}/>
         </div>
       </Container>
     </div>

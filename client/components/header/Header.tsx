@@ -5,7 +5,6 @@ import Offers from "./Offers"
 import Deal from "./Deal"
 import Carticon from "./Carticon"
 import Account from "./Account"
-import { Menu, MenuIcon, MenuSquare, MenuSquareIcon } from "lucide-react"
 import MobileMenu from "./MobileMenu"
 import Image from "next/image"
 

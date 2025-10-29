@@ -4,7 +4,7 @@ import React from 'react'
 
 const Account = () => {
   return (
-       <Link href='/account/account' className='flex items-center gap-2 justify-end group' >
+       <Link href='/account' className='flex items-center gap-2 justify-end group' >
      
         <User className='text-store h-6 w-6 group-hover:text-blue-100 hoverEffect' />
      

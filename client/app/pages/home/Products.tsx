@@ -9,6 +9,7 @@ interface category {
 }
 
 interface Products {
+    isStocked: boolean;
     name: string;
     id: string;
     category : category
@@ -25,7 +26,6 @@ interface ListProducts {
 
 
 const Products = ({products }: ListProducts) => {
-
     return (
         <div className='grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-2 grid-cols-1  mt-10 gap-4 '>
 
