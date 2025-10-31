@@ -2,7 +2,7 @@
 import { useCartStore } from '@/app/store/store';
 
 import Container from '@/components/common/Container';
-import { ShoppingBagIcon } from 'lucide-react';
+import { Delete, DeleteIcon, RemoveFormatting, ShoppingBagIcon, Trash } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
@@ -47,7 +47,7 @@ interface CartItem {
 
 const CartItem = () => {
   const pathName = usePathname()
-  const { increaseQuantity, decreaseQuantity, items,removeFromCart } = useCartStore()
+  const { increaseQuantity, decreaseQuantity, items, removeFromCart } = useCartStore()
   const router = useRouter()
   const [cart, setCart] = useState<CartItem[]>([]);
 
@@ -65,74 +65,150 @@ const CartItem = () => {
   return (
     <>
       <LinkHeader pathName={pathName} />
-      <Container >
+      <Container className='bg-white rounded-md p-4 mt-5' >
         <div className=''>
           <div className='flex gap-2 pt-5'>
             <ShoppingBagIcon />
-            <h1>Shopping Cart</h1>
+            <h1 className='text-2xl font-bold'>Shopping Cart</h1>
           </div>
         </div>
         {
           !cart.length ? <h1>no carts</h1> :
-            <div className='pt-5'>
-              <Table>
-                {/* <TableCaption>A list of your recent invoices.</TableCaption> */}
-                <TableHeader>
-                  <TableRow>
-                    <TableHead className="w-[100px]">Image	</TableHead>
-                    <TableHead>Product Name	</TableHead>
-                    <TableHead>Model</TableHead>
-                    <TableHead>Quantity</TableHead>
-                    <TableHead>Unit Price</TableHead>
-                    <TableHead>Total</TableHead>
-                    <TableHead>Action</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {cart.map((c) => (
-                    <TableRow key={c.id}>
-                      {/* الصورة */}
-                      <TableCell>
-                        <div className="relative w-16 h-16">
+            <div className="w-full mt-7">
+              {/* 🖥️ جدول للشاشات المتوسطة وما فوق */}
+              <div className="hidden md:block overflow-x-auto rounded-lg border  bg-white border-gray-200">
+                <Table className="min-w-full">
+                  <TableHeader className=''>
+                    <TableRow >
+                      <TableHead className="font-bold w-[100px]">Image</TableHead>
+                      <TableHead className='font-bold'>Product Name</TableHead>
+                      <TableHead className='font-bold'>Model</TableHead>
+                      <TableHead className='font-bold'>Quantity</TableHead>
+                      <TableHead className='font-bold'>Unit Price</TableHead>
+                      <TableHead className='font-bold'>Total</TableHead>
+                      <TableHead className='font-bold'>Action</TableHead>
+                    </TableRow>
+                  </TableHeader>
+
+                  <TableBody>
+                    {cart.map((c) => {
+                      const quantity = items.find((item) => item.id === c.id)?.quantity ?? 0;
+
+                      return (
+                        <TableRow key={c.id}>
+                          <TableCell>
+                            <div className="relative w-20 h-20 border rounded-sm flex justify-center items-center">
+                              <Image
+                                src={c.images[0]}
+                                alt={c.name}
+                                width={300}
+                                height={300}
+                                className="object-cover  rounded-md"
+                              />
+                            </div>
+                          </TableCell>
+                          <TableCell className="font-semibold">{c.name}</TableCell>
+                          <TableCell>{c.brand.name}</TableCell>
+                          <TableCell>
+                            <div className="flex items-center gap-3 font-bold">
+                              <button
+                                onClick={() => decreaseQuantity(c.id)}
+                                className="w-6 h-6 flex justify-center items-center border rounded hover:bg-gray-100"
+                              >
+                                -
+                              </button>
+                              <span>{quantity}</span>
+                              <button
+                                onClick={() => increaseQuantity(c.id)}
+                                className="w-6 h-6 flex justify-center items-center border rounded hover:bg-gray-100"
+                              >
+                                +
+                              </button>
+                            </div>
+                          </TableCell>
+                          <TableCell>${c.price}</TableCell>
+                          <TableCell>${c.price * c.quantity}</TableCell>
+                          <TableCell>
+                            <button
+                              onClick={() => removeFromCart(c.id)}
+                              className="text-red-500 hover:underline"
+                            >
+                              <Trash />
+                            </button>
+                          </TableCell>
+                        </TableRow>
+                      );
+                    })}
+                  </TableBody>
+                </Table>
+              </div>
+
+              {/* 📱 عرض بطاقات في الشاشات الصغيرة */}
+              <div className="block md:hidden space-y-4">
+                {cart.map((c) => {
+                  const quantity = items.find((item) => item.id === c.id)?.quantity ?? 0;
+
+                  return (
+                    <div
+                      key={c.id}
+                      className="border border-gray-200 rounded-xl p-3 flex flex-col gap-3 shadow-sm"
+                    >
+                      <div className="flex gap-3 items-center justify-between">
+                        <div className="relative w-20 h-20 flex-shrink-0">
                           <Image
                             src={c.images[0]}
                             alt={c.name}
                             fill
-                            className="object-cover rounded"
+                            className="object-cover rounded-md"
                           />
                         </div>
-                      </TableCell>
+                        <div className="flex flex-col">
+                          <span className="font-semibold text-sm">{c.name}</span>
+                          <span className="text-gray-500 text-xs">{c.brand.name}</span>
+                        </div>
+                      </div>
 
-                      {/* باقي الأعمدة */}
-                      <TableCell className="font-medium">{c.name}</TableCell>
-                      <TableCell>{c.brand.name}</TableCell>
-                      <TableCell>
-                        {items.find((item) => item.id === c.id)?.quantity ?? 0 > 0 ? <div className='flex gap-3 font-bold  '>
-                          <button className='text-md w-5 ' onClick={() => decreaseQuantity(c.id)}>-</button>
-                          <div className='text-md w-5  flex justify-center items-center'>  {items.find((item) => item.id === c.id)?.quantity}  </div>
-                          <button className='text-md w-5 ' onClick={() => increaseQuantity(c.id)} >+</button>
-                        </div> : ""}
+                      <div className="flex justify-between items-center text-sm">
+                        <span className="text-gray-500">Quantity:</span>
+                        <div className="flex items-center gap-2 font-bold">
+                          <button
+                            onClick={() => decreaseQuantity(c.id)}
+                            className="w-7 h-7 flex justify-center items-center border rounded hover:bg-gray-100"
+                          >
+                            -
+                          </button>
+                          <span>{quantity}</span>
+                          <button
+                            onClick={() => increaseQuantity(c.id)}
+                            className="w-7 h-7 flex justify-center items-center border rounded hover:bg-gray-100"
+                          >
+                            +
+                          </button>
+                        </div>
+                      </div>
 
+                      <div className="flex justify-between text-sm">
+                        <span className="text-gray-500">Unit Price:</span>
+                        <span>${c.price}</span>
+                      </div>
 
+                      <div className="flex justify-between text-sm">
+                        <span className="text-gray-500">Total:</span>
+                        <span>${c.price * c.quantity}</span>
+                      </div>
 
-                      </TableCell>
-                      <TableCell>${c.price}</TableCell>
-                      <TableCell>${c.price * c.quantity}</TableCell>
-                      <TableCell>
-                        <button
-                             onClick={()=> removeFromCart(c.id)}
-                          className="text-red-500 hover:underline"
-                        >
-                          Remove
-                        </button>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-
-
+                      <button
+                        onClick={() => removeFromCart(c.id)}
+                        className="text-red-500 text-sm mt-2 self-end hover:underline"
+                      >
+                        <Trash />
+                      </button>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
+      
         }
       </Container>
     </>
