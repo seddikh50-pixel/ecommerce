@@ -25,46 +25,6 @@ const middleware = async (request: NextRequest) => {
    }
 
 
-
-   // const cookieStore = await cookies();
-   // const token =    // const token = cookieStore.get('token')?.value
-
-
-
-   // if (pathname.startsWith('/api')) {
-   //    if (pathname.startsWith('/api/admin/login')) {
-   //       return NextResponse.next()
-   //    }
-   //    if (!token) {
-   //       return NextResponse.json({ msg: 'unauthorized' }, { status: 404 })
-   //    }
-   //    const isAdmin = await authAdmin(token || "")
-   //    if (!isAdmin) {
-   //       return NextResponse.json({ msg: 'forbidden' }, { status: 404 })
-   //    }
-   //    return NextResponse.next()
-   // }
-
-
-
-   // if (pathname.startsWith('/admin')) {
-   //    if (!token) {
-   //       return NextResponse.redirect(new URL('/login', request.url))
-   //    }
-   //    const isAdmin = await authAdmin(token || "")
-   //    if (!isAdmin) {
-   //       return NextResponse.redirect(new URL('/login', request.url))
-   //    }
-   //    return NextResponse.next()
-   // }
-
-
-
-
-
-
-
-
 }
 
 export default middleware;

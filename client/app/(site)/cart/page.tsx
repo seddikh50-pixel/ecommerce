@@ -5,7 +5,7 @@ import React from 'react'
 const page = async () => {
       
   return (
-    <div>
+    <div className='bg-gray-100'>
      <CartItem/>
       
     </div>

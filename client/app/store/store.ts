@@ -22,7 +22,7 @@ interface CartState {
   items: CartItem[]
   addToCart: (product: Product,user : GoogleUser) => void
   increaseQuantity: (id: string) => void
-  decreaseQuantity: (product: Product) => void
+  decreaseQuantity: (id: string) => void
   removeFromCart: (id: string) => void
   // clearCart: () => void
 }
@@ -69,16 +69,15 @@ export const useCartStore = create<CartState>()(
 
 
 
-      decreaseQuantity: (product) => {
+      decreaseQuantity: (id) => {
         const updatedItems = get().items.map((item) =>
-          item.id === product.id ?
+          item.id === id ?
             { ...item, quantity: item.quantity - 1 } : item
         )
-        const itemQuantity = updatedItems.find((item) => item.id === product.id)?.quantity
+        const itemQuantity = updatedItems.find((item) => item.id === id)?.quantity
         if (itemQuantity !== undefined && itemQuantity <= 0) {
-          console.log("message")
-          get().removeFromCart(product.id) // ✅ مرر id هنا
-          enqueueSnackbar(`${product?.name} removed successfully`, { variant: 'success' })
+          get().removeFromCart(id) // ✅ مرر id هنا
+          // enqueueSnackbar(`${product?.name} removed successfully`, { variant: 'success' })
         } else {
           set({ items: updatedItems }) // ✅ فقط إذا لم نحذف العنصر
            enqueueSnackbar("Quantity Decreased successfully", { variant: 'success' })
@@ -87,8 +86,11 @@ export const useCartStore = create<CartState>()(
 
       // // ❌ حذف منتج نهائيًا
       removeFromCart: (id) => {
+        console.log("seddik")
         const filtered = get().items.filter((item) => item.id !== id)
         set({ items: filtered })
+        enqueueSnackbar("product deleted successfully", { variant: 'success' })
+
          
       },
 

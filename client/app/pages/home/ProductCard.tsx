@@ -72,7 +72,7 @@ const ProductCard = ({ product }: { product: Product }) => {
                 <div className='flex justify-between border-b pb-1   '>
                     <h3>Quantity</h3>
                     <div className='flex gap-3 font-bold  '>
-                        <button className='text-md w-5 ' onClick={() => decreaseQuantity(product)}>-</button>
+                        <button className='text-md w-5 ' onClick={() => decreaseQuantity(product.id)}>-</button>
                         <div className='text-md w-5  flex justify-center items-center'>{items.find((item) => item.id === product.id)?.quantity} </div>
                         <button className='text-md w-5 ' onClick={() => increaseQuantity(product.id)} >+</button>
                     </div>

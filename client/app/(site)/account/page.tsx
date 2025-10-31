@@ -1,13 +1,16 @@
 "use client";
 
+import LinkHeader from "@/app/pages/LinkHeader";
 import { useCartStore } from "@/app/store/store";
 import AppLoader from "@/components/common/Loading";
 import { Button } from "@/components/ui/button";
+import SignIn from "@/components/users/SignIn";
 import SignUp from "@/components/users/SignUp";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaGithub } from "react-icons/fa";
+import { usePathname } from 'next/navigation';
 
 import { FcGoogle } from "react-icons/fc";
 
@@ -19,12 +22,15 @@ interface GoogleUser {
   given_name: string;
   family_name: string;
   picture: string;
+  createdAt: string
 }
 export default function AccountPage() {
+  const pathName = usePathname()
   const router = useRouter()
   const { items } = useCartStore()
   const [user, setUser] = useState<GoogleUser | null>(null);
   const [loading, setLoading] = useState(true);
+  const [spinner, setSpinner] = useState(false);
 
   // 🔹 نحاول قراءة بيانات المستخدم من الكوكي (بعد تسجيل الدخول)
   useEffect(() => {
@@ -56,6 +62,7 @@ export default function AccountPage() {
           });
           const data = await res.json()
           if (data.success) {
+            console.log(data.user)
             setUser(data.user)
           } else {
             setUser(null)
@@ -79,18 +86,26 @@ export default function AccountPage() {
 
   // 🔹 تسجيل الدخول عبر Google
   const handleGoogleSignIn = () => {
-    const googleAuthUrl = "https://accounts.google.com/o/oauth2/v2/auth";
-    const params = new URLSearchParams({
-      client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!, // من ملف .env
-      redirect_uri: process.env.NEXT_PUBLIC_GOOGLE_REDIRECT_URI!, // من ملف .env
-      response_type: "code",
-      scope: "openid email profile",
-      access_type: "offline",
-      prompt: "consent",
-    });
+    try {
+      setSpinner(true)
 
-    // تحويل المستخدم إلى صفحة Google
-    window.location.href = `${googleAuthUrl}?${params.toString()}`;
+      const googleAuthUrl = "https://accounts.google.com/o/oauth2/v2/auth";
+      const params = new URLSearchParams({
+        client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!, // من ملف .env
+        redirect_uri: process.env.NEXT_PUBLIC_GOOGLE_REDIRECT_URI!, // من ملف .env
+        response_type: "code",
+        scope: "openid email profile",
+        access_type: "offline",
+        prompt: "consent",
+      });
+
+      // تحويل المستخدم إلى صفحة Google
+      window.location.href = `${googleAuthUrl}?${params.toString()}`;
+
+    } catch (error) {
+      console.log(error)
+      setSpinner(false)
+    }
   };
 
   // 🔹 تسجيل الخروج (مسح الكوكي)
@@ -102,29 +117,13 @@ export default function AccountPage() {
 
   return (
     <>
+     <LinkHeader pathName={pathName} />
       {loading ? <AppLoader /> :
-        <div className="flex flex-col items-center justify-center min-h-screen text-center">
+        <div className="flex flex-col  min-h-screen text-center">
           {user ? (
-            <div>
-              {/* <Image
-                width={200}
-                height={200}
-                src={user?.picture}
-                alt="User"
-                className="w-24 h-24 rounded-full mx-auto mb-4"
-              /> */}
-              <h2 className="text-lg font-semibold mb-2">مرحبًا، {user.name}</h2>
-              <p className="text-gray-600">{user.email}</p>
-
-              <button
-                onClick={handleLogout}
-                className="mt-4 bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700"
-              >
-                تسجيل الخروج
-              </button>
-            </div>
+            <SignIn handleLogout={handleLogout} user={user} />
           ) : (
-            <SignUp handleGoogleSignIn={handleGoogleSignIn}  />
+            <SignUp handleGoogleSignIn={handleGoogleSignIn} spinner={spinner} />
           )}
         </div>
       }
