@@ -48,13 +48,13 @@ interface CartItem {
 const CartItem = () => {
   const pathName = usePathname()
   const { increaseQuantity, decreaseQuantity, items, removeFromCart } = useCartStore()
-  const router = useRouter()
   const [cart, setCart] = useState<CartItem[]>([]);
 
   useEffect(() => {
     const localItem = localStorage.getItem('cart-storage')
     if (localItem) {
       const itemsData = JSON.parse(decodeURIComponent(localItem));
+      console.log(itemsData.state.items)
       setCart(itemsData.state.items)
 
     }

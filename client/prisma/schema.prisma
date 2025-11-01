@@ -20,17 +20,18 @@ model Banner {
 }
 
 model Product {
-  id          String   @id @default(uuid())
-  name        String @unique
-  images      String[]
-  price       String
-  description String
-  categoryId  String
-  category    Category @relation(fields: [categoryId], references: [id])
-  brandId     String
-  brand       Brand    @relation(fields: [brandId], references: [id])
-  isStocked   Boolean @default(true)
-  
+  id              String   @id @default(uuid())
+  name            String   @unique
+  images          String[]
+  price           String
+  description     String
+  categoryId      String
+  category        Category @relation(fields: [categoryId], references: [id])
+  brandId         String
+  brand           Brand    @relation(fields: [brandId], references: [id])
+  isStocked       Boolean  @default(true)
+  stripeProductId String?
+  stripePriceId   String?
 }
 
 model Category {
@@ -47,22 +48,19 @@ model Brand {
   products Product[]
 }
 
-
 model Blog {
-   id       String    @id @default(uuid())
+  id        String   @id @default(uuid())
   image     String
-  title     String          // عنوان البلوق
-  content   String          // النص الكبير (المقال)
+  title     String // عنوان البلوق
+  content   String // النص الكبير (المقال)
   createdAt DateTime @default(now())
 }
 
-
-
 model User {
-  id       String   @id
-  email    String   @unique
-  name     String?
-  picture  String?
-  cart     Json?    // نخزن هنا مصفوفة المنتجات
+  id        String   @id
+  email     String   @unique
+  name      String?
+  picture   String?
+  cart      Json? // نخزن هنا مصفوفة المنتجات
   createdAt DateTime @default(now())
 }
