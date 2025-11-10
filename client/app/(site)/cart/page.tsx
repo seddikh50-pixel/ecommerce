@@ -4,12 +4,12 @@ import prisma from '@/lib/prisma'
 import React from 'react'
 
 const page = async () => {
-      
+
   return (
     <div className='bg-gray-100 p-4'>
-     <CartItem/>
-      <OrderSummary/>
-      
+      <CartItem />
+      <OrderSummary />
+
     </div>
   )
 }

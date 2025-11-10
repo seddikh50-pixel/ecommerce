@@ -34,7 +34,7 @@ const SideCategoryAndBrand = ({ categories, brands }: SideCategoryAndBrandProps)
     }
     return (
         <div className='w-64'>
-            <div>
+            <div className='flex flex-col  gap-2 pt-4'>
                 {categories.map((cat) => (
                     <label key={cat.id} className="flex items-center gap-2 cursor-pointer">
                         <input

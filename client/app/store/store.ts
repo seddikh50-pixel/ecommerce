@@ -33,6 +33,7 @@ interface CartState {
   setAllShopProducts: (allShopProducts: Product[]) => void
   filterProductByCategoryId: (id: string) => void
   resetSelection: () => void
+  loading: boolean
   // clearCart: () => void
 }
 
@@ -47,10 +48,16 @@ export const useCartStore = create<CartState>()(
       shopProducts: [],
       setShopProducts: (shopProducts) => set({ shopProducts })
       ,
+      loading: false,
       filterProductByCategoryId: (id: string) => {
-        const shopProduct = get().allShopProducts
-        const filterProduct = shopProduct.filter((product) => product.categoryId === id)
-        set({ shopProducts: filterProduct })
+        set({ loading: true })
+        setTimeout(() => {
+          const shopProduct = get().allShopProducts
+          const filterProduct = shopProduct.filter((product) => product.categoryId === id)
+          set({ shopProducts: filterProduct, loading: false })
+        }, 100)
+
+
 
 
       },

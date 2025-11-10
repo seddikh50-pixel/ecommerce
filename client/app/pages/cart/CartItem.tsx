@@ -11,7 +11,6 @@ import { usePathname } from 'next/navigation';
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -54,7 +53,6 @@ const CartItem = () => {
     const localItem = localStorage.getItem('cart-storage')
     if (localItem) {
       const itemsData = JSON.parse(decodeURIComponent(localItem));
-      console.log(itemsData.state.items)
       setCart(itemsData.state.items)
 
     }

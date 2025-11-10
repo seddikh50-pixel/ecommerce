@@ -9,17 +9,17 @@ import SideCategoryAndBrand from '@/app/pages/shop/SideCategoryAndBrand'
 
 const page = async () => {
     const products = await getAllProducts()
-    const categories =  await getAllCategories()
+    const categories = await getAllCategories()
     const brands = await getAllBrands()
 
     return (
-        <div className='bg-gray-100 p-4'>
+        <div className='bg-gray-100 p-4   '>
             <Shop />
-            <Container>
-                <h1>Get the products as your needs</h1>
-                <div className='flex'>
+            <Container className='0'>
+                <h1 className='py-5 text-2xl font-bold'>Get the products as your needs</h1>
+                <div className='flex border-t border-store '>
                     <SideCategoryAndBrand categories={categories} brands={brands} />
-                    <ShopCard products={products}/>
+                    <ShopCard products={products} />
                 </div>
             </Container>
 
