@@ -8,13 +8,11 @@ import { Button } from '@/components/ui/button'
 
 const OrderSummary = () => {
   const { items } = useCartStore()
-  console.log(items)
   const [total, setTotal] = useState <number>();
   useEffect(() => {
     // if (items && items.length > 0) {
       const total = items.reduce((acc, cur) => acc + Number(cur.price) * (cur.quantity || 1), 0)
       setTotal(total)
-      console.log("Total:", total)
     // }
 
   }, [items]);

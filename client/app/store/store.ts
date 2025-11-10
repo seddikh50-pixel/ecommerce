@@ -3,9 +3,12 @@ import { create } from 'zustand';
 import { persist } from "zustand/middleware"
 import { enqueueSnackbar } from 'notistack'
 
-export interface CartItem extends Omit<Product, 'brand' | 'category'> {
-  quantity: number
+
+export interface CartItem extends Product {
+  quantity: number;
 }
+
+
 interface GoogleUser {
   id: string;
   email: string;
@@ -20,10 +23,16 @@ interface GoogleUser {
 
 interface CartState {
   items: CartItem[]
-  addToCart: (product: Product,user : GoogleUser) => void
+  addToCart: (product: Product, user: GoogleUser) => void
   increaseQuantity: (id: string) => void
   decreaseQuantity: (id: string) => void
   removeFromCart: (id: string) => void
+  shopProducts: Product[]
+  allShopProducts: Product[]
+  setShopProducts: (shopProducts: Product[]) => void
+  setAllShopProducts: (allShopProducts: Product[]) => void
+  filterProductByCategoryId: (id: string) => void
+  resetSelection: () => void
   // clearCart: () => void
 }
 
@@ -33,8 +42,24 @@ export const useCartStore = create<CartState>()(
   persist(
     (set, get) => ({
       items: [],
+      allShopProducts: [],
+      setAllShopProducts: (allShopProducts) => set({ allShopProducts }),
+      shopProducts: [],
+      setShopProducts: (shopProducts) => set({ shopProducts })
+      ,
+      filterProductByCategoryId: (id: string) => {
+        const shopProduct = get().allShopProducts
+        const filterProduct = shopProduct.filter((product) => product.categoryId === id)
+        set({ shopProducts: filterProduct })
 
-      addToCart: (product: Product, user : GoogleUser) => {
+
+      },
+      resetSelection: () => {
+        const products = get().allShopProducts
+        set({ shopProducts: products })
+
+      },
+      addToCart: (product: Product, user: GoogleUser) => {
         const items = get().items
 
         const existingItem = items.find((item) => item.id === product.id)
@@ -51,9 +76,7 @@ export const useCartStore = create<CartState>()(
           enqueueSnackbar(`${product?.name} Added successfully`, { variant: 'success' })
 
         }
-        if(user){
-          
-        }
+
       },
 
 
@@ -80,7 +103,7 @@ export const useCartStore = create<CartState>()(
           // enqueueSnackbar(`${product?.name} removed successfully`, { variant: 'success' })
         } else {
           set({ items: updatedItems }) // ✅ فقط إذا لم نحذف العنصر
-           enqueueSnackbar("Quantity Decreased successfully", { variant: 'success' })
+          enqueueSnackbar("Quantity Decreased successfully", { variant: 'success' })
         }
       },
 
@@ -91,7 +114,7 @@ export const useCartStore = create<CartState>()(
         set({ items: filtered })
         enqueueSnackbar("product deleted successfully", { variant: 'success' })
 
-         
+
       },
 
       // // 🧹 تفريغ السلة بالكامل

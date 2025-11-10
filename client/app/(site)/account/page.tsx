@@ -35,42 +35,36 @@ export default function AccountPage() {
   // 🔹 نحاول قراءة بيانات المستخدم من الكوكي (بعد تسجيل الدخول)
   useEffect(() => {
     const handeUserAndSend = async () => {
-      // document.cookie = "user=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMzQ1IiwiZW1haWwiOiJ1c2VyQGV4YW1wbGUuY29tIiwibmFtZSI6IkFsaSBBaG1lZCIsInBpY3R1cmUiOiJodHRwczovL2V4YW1wbGUuY29tL2F2YXRhci5qcGciLCJnaXZlbl9uYW1lIjoiQWxpIiwiZmFtaWx5X25hbWUiOiJBaG1lZCIsImlhdCI6MTc2MTc0NDM1MiwgImV4cCI6MTc2MTc1MTU1Mn0.R_aEzZUysIyQ_kGnj58lhWiatZ5n5ZZnhif7fbASXOs"
       const localItem = localStorage.getItem('cart-storage')
       let itemsData;
       if (localItem) {
         itemsData = JSON.parse(decodeURIComponent(localItem));
       }
       try {
-        const cookie = document.cookie.split(';')
-        const getToken = cookie.find((c) => c.trim().startsWith('user='))
-        if (!getToken) {
+
+        const res = await fetch("/api/user", {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+
+          },
+          body: JSON.stringify({
+            cart: itemsData
+          })
+
+        });
+        const data = await res.json()
+        if (data.success) {
+          console.log(data.user)
+          setUser(data.user)
+        } else {
           setUser(null)
         }
-        else {
-          const userToken = getToken.split('user=')[1]
-          const res = await fetch("/api/user", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "Authorization": `Bearer ${userToken}`,
-            },
-            body: JSON.stringify({
-              cart: itemsData
-            })
-
-          });
-          const data = await res.json()
-          if (data.success) {
-            console.log(data.user)
-            setUser(data.user)
-          } else {
-            setUser(null)
-          }
 
 
 
-        }
+
 
       } catch (error) {
         console.log(error)
@@ -109,15 +103,17 @@ export default function AccountPage() {
   };
 
   // 🔹 تسجيل الخروج (مسح الكوكي)
-  const handleLogout = () => {
-    document.cookie =
-      "user=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+  const handleLogout = async () => {
+    await fetch("/api/logout", {
+      method: "POST",
+      credentials: "include"
+    });
     setUser(null);
   };
 
   return (
     <>
-     <LinkHeader pathName={pathName} />
+      <LinkHeader pathName={pathName} />
       {loading ? <AppLoader /> :
         <div className="flex flex-col  min-h-screen text-center">
           {user ? (

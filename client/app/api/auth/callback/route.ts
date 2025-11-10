@@ -67,6 +67,7 @@ export async function GET(req: Request) {
     const response = NextResponse.redirect("http://localhost:3000/account");
 
     response.cookies.set("user", jwt, {
+      httpOnly : true,
       secure: false,          // ضروري: لا تستخدم HTTPS في localhost
       sameSite: "lax",        // أو "none" في حال عندك HTTPS
       path: "/",

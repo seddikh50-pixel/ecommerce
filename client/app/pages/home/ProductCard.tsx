@@ -8,53 +8,55 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
 import PriceFormatter from './PriceFormatter';
 import { useCartStore } from '@/app/store/store';
-
-
-
-interface Category {
-    id: string
-    name: string
-    image: string
-}
-interface Product {
-    isStocked: boolean;
-    name: string;
-    category: Category
+interface GoogleUser {
     id: string;
-    images: string[];
-    price: string;
-    description: string;
-    categoryId: string;
-    brandId: string;
+    email: string;
+    verified_email: boolean;
+    name?: string | null;
+    given_name?: string | null;
+    family_name?: string | null;
+    picture?: string | null;
+
+}
+
+
+
+interface category {
+  id: string
+  name: string
+  image: string
+}
+
+interface brand {
+  id: string
+  name: string
+  image: string
+}
+
+
+
+interface Products {
+  isStocked: boolean;
+  name: string;
+  id: string;
+  category?: category 
+  images: string[];
+  price: string;
+  description: string;
+  categoryId: string;
+  brandId: string;
+  brand?: brand
+  stripeProductId: string | null; // ✅ أضف | null هنا
+  stripePriceId: string | null;
 };
 
-interface GoogleUser {
-  id: string;
-  email: string;
-  verified_email: boolean;
-  name?: string | null;
-  given_name?: string | null;
-  family_name?: string | null;
-  picture?: string | null;
-
-}
 
 
 
-const ProductCard = ({ product }: { product: Product }) => {
 
+const ProductCard = ({ product }: { product: Products }) => {
     const { items, addToCart, increaseQuantity, decreaseQuantity } = useCartStore()
-  const [user, setUser] = useState<GoogleUser | null>(null);
-    // useEffect(() => {
-    //     const cookie = document.cookie
-    //     .split("; ")
-    //     .find((row) => row.startsWith("user="));
-
-    // if (cookie) {
-    //     setUser(JSON.parse(decodeURIComponent(cookie.split("=")[1])))
-    // }
-
-    // }, []);
+    const [user, setUser] = useState<GoogleUser | null>(null);
 
     const itemCheck = items.find((item) => item.id === product.id)
     return (
@@ -62,7 +64,7 @@ const ProductCard = ({ product }: { product: Product }) => {
             <Link href={`/product/${product.name}`} className='w-full h-44 relative'>
                 <Image loading='lazy' alt={product.images[0]} src={product.images[0]} fill className=' object-contain group-hover:scale-110 hoverEffect' />
             </Link>
-            <h2 className='font-light text-sm text-gray-700'>{product.category.name} </h2>
+            {/* <h2 className='font-light text-sm text-gray-700'>{product.category.name} </h2> */}
             <h1 className='line-clamp-1 font-bold text-base'>{product.name} </h1>
             <PriceFormatter price={product.price} />
 
@@ -81,7 +83,7 @@ const ProductCard = ({ product }: { product: Product }) => {
                     <h3>Total</h3>
                     <h1>{+product.price * itemCheck.quantity} </h1>
                 </div>
-            </div> : <div className=' h-10'><Button onClick={() => addToCart(product,user!)} className='max-w-36   rounded-full bg-store hover:bg-store/90'><ShoppingCartIcon /> Add to Cart</Button></div>
+            </div> : <div className=' h-10'><Button onClick={() => addToCart(product, user!)} className='max-w-36   rounded-full bg-store hover:bg-store/90'><ShoppingCartIcon /> Add to Cart</Button></div>
             }
 
 

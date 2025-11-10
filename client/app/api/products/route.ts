@@ -104,20 +104,20 @@ export async function POST(request: Request) {
     await Promise.all(savePromises);
 
     // ⚡️ الخطوة 1: إنشاء المنتج داخل Stripe
-    const stripeProduct = await stripe.products.create({
-      name,
-      description,
-      images: images.map(img => `${process.env.NEXT_PUBLIC_URL}${img}`),
-      metadata: { categoryId, brandId },
-    });
+    // const stripeProduct = await stripe.products.create({
+    //   name,
+    //   description,
+    //   images: images.map(img => `${process.env.NEXT_PUBLIC_URL}${img}`),
+    //   metadata: { categoryId, brandId },
+    // });
 
-    // ⚡️ الخطوة 2: إنشاء السعر
-    const stripePrice = await stripe.prices.create({
-      unit_amount: Math.round(price * 100), // السعر بالسنت
-      currency: 'usd',
-      product: stripeProduct.id,
-    });
-    console.log("✅ Stripe Product Created:", stripeProduct);
+    // // ⚡️ الخطوة 2: إنشاء السعر
+    // const stripePrice = await stripe.prices.create({
+    //   unit_amount: Math.round(price * 100), // السعر بالسنت
+    //   currency: 'usd',
+    //   product: stripeProduct.id,
+    // });
+    // console.log("✅ Stripe Product Created:", stripeProduct);
 
     // ⚡️ الخطوة 3: حفظ المنتج في قاعدة البيانات
     await prisma.product.create({
@@ -129,8 +129,10 @@ export async function POST(request: Request) {
         brandId,
         images,
         isStocked,
-        stripeProductId: stripeProduct.id,
-        stripePriceId: stripePrice.id,
+             stripeProductId: "stripeProduct.id",
+        stripePriceId: "stripePrice.id",
+        // stripeProductId: stripeProduct.id,
+        // stripePriceId: stripePrice.id,
       },
     });
 
