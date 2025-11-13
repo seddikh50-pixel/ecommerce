@@ -13,11 +13,11 @@ import ShopByBrand from "../pages/home/ShopByBrand";
 import LatestBlog from "../pages/home/LatestBlog";
 
 
-export default async function Home() {
+export default async  function Home() {
 
   return (
-    <div  >
-
+    <div className="relative"  >
+  
       {/* <div className="flex justify-evenly" >
       </div> */}
       <div className="bg-gray-100 pb-10">

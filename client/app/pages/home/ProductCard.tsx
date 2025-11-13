@@ -60,7 +60,7 @@ const ProductCard = ({ product }: { product: Products }) => {
 
     const itemCheck = items.find((item) => item.id === product.id)
     return (
-        <div className='flex flex-col w-full justify-start space-y-1 px-3 gap-1 rounded-md group'>
+        <div className='flex flex-col w-full  justify-start space-y-1 px-3 gap-1 rounded-md group'>
             <Link href={`/product/${product.name}`} className='w-full h-44 relative'>
                 <Image loading='lazy' alt={product.images[0]} src={product.images[0]} fill className=' object-contain group-hover:scale-110 hoverEffect' />
             </Link>

@@ -35,6 +35,10 @@ interface CartState {
   resetSelection: () => void
   loading: boolean
   // clearCart: () => void
+  isMobileListOpen : boolean,
+  setIsMobileListOpen : (value : boolean)=> void ,
+   showSearch : boolean,
+  setShowSearch : (value : boolean)=> void 
 }
 
 
@@ -56,11 +60,11 @@ export const useCartStore = create<CartState>()(
           const filterProduct = shopProduct.filter((product) => product.categoryId === id)
           set({ shopProducts: filterProduct, loading: false })
         }, 100)
-
-
-
-
       },
+       isMobileListOpen : false ,
+      setIsMobileListOpen : (value) => set({isMobileListOpen : value}),
+      showSearch : false ,
+      setShowSearch : (value) => set({showSearch : value}),
       resetSelection: () => {
         const products = get().allShopProducts
         set({ shopProducts: products })

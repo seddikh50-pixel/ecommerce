@@ -1,6 +1,8 @@
 "use client"
 import { useCartStore } from '@/app/store/store'
-import { Check, Radio } from 'lucide-react'
+import { Checkbox } from "@/components/ui/checkbox"
+import { Label } from "@/components/ui/label"
+
 import Link from 'next/link'
 import React, { useState } from 'react'
 
@@ -21,32 +23,52 @@ interface SideCategoryAndBrandProps {
 }
 
 const SideCategoryAndBrand = ({ categories, brands }: SideCategoryAndBrandProps) => {
-    const [selectedCategory, setSelectedCategory ] = useState<string>("");
-    const { filterProductByCategoryId , resetSelection } = useCartStore()
+    const [selectedCategory, setSelectedCategory] = useState<string>("");
+    const { filterProductByCategoryId, resetSelection } = useCartStore()
 
     const toggleCategory = (id: string) => {
         setSelectedCategory(id)
         filterProductByCategoryId(id)
     }
     const enableCheck = () => {
-         setSelectedCategory('')
-         resetSelection()
+        setSelectedCategory('')
+        resetSelection()
     }
     return (
-        <div className='w-64'>
-            <div className='flex flex-col  gap-2 pt-4'>
+        <div className='w-64  border-r border-store p-3 xl:block lg:block bg-white sm:hidden md:block hidden  '>
+            <div className='flex flex-col  gap-4 pt-4'>
+                <h1 className='font-bold leading-2 text-lg py-1'>Product Categories</h1>
                 {categories.map((cat) => (
-                    <label key={cat.id} className="flex items-center gap-2 cursor-pointer">
-                        <input
+                    <div key={cat.id} className="flex items-center gap-3">
+                        <Checkbox
                             checked={selectedCategory.includes(cat.id)}
-                            type="checkbox"
-                            onChange={() => toggleCategory(cat.id)}
-                            className="accent-blue-500"
+                            onCheckedChange={() => toggleCategory(cat.id)} id={`cat-${cat.id}`}
+                            className='data-[state=checked]:bg-white
+                           data-[state=checked]:border-store
+                            data-[state=checked]:text-store'
+
                         />
-                        <span>{cat.name}</span>
-                    </label>
+                        <Label htmlFor={`cat-${cat.id}`}>{cat.name} </Label>
+                    </div>
                 ))}
-                <button onClick={enableCheck}>reset selection</button>
+                <button className=' text-left underline' onClick={enableCheck}>reset selection</button>
+            </div>
+             <div className='flex flex-col  gap-4 pt-4'>
+                <h1 className='font-bold leading-2 text-lg py-1'>Product Brands</h1>
+                {brands.map((bra) => (
+                    <div key={bra.id} className="flex items-center gap-3">
+                        <Checkbox
+                            checked={selectedCategory.includes(bra.id)}
+                            onCheckedChange={() => toggleCategory(bra.id)} id={`cat-${bra.id}`}
+                            className='data-[state=checked]:bg-white
+                           data-[state=checked]:border-store
+                            data-[state=checked]:text-store'
+
+                        />
+                        <Label htmlFor={`cat-${bra.id}`}>{bra.name} </Label>
+                    </div>
+                ))}
+                <button className=' text-left underline' onClick={enableCheck}>reset selection</button>
             </div>
         </div>
     )

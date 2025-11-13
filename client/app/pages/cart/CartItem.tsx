@@ -95,7 +95,7 @@ const CartItem = () => {
                       return (
                         <TableRow key={c.id}>
                           <TableCell>
-                            <div className="relative w-20 h-20 border rounded-sm flex justify-center items-center">
+                            <div className="relative w-20  h-25 border rounded-sm flex justify-center items-center">
                               <Image
                                 src={c.images[0]}
                                 alt={c.name}
@@ -152,7 +152,7 @@ const CartItem = () => {
                       className="border border-gray-200 rounded-xl p-3 flex flex-col gap-3 shadow-sm"
                     >
                       <div className="flex gap-3 items-center justify-between">
-                        <div className="relative w-20 h-20 flex-shrink-0">
+                        <div className="relative w-20 h-20 bg-amber-400 flex-shrink-0">
                           <Image
                             src={c.images[0]}
                             alt={c.name}

@@ -8,7 +8,6 @@ import React from 'react'
 
 const page = async () => {
   const products = await prisma.product.findMany()
-  console.log(products)
 
   return (
     <div>

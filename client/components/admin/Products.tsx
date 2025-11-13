@@ -83,7 +83,7 @@ const Products = ({ products }: products) => {
                         return (
                             <TableRow key={index} className='hover:bg-white/15'>
                                 <TableCell className="font-medium">
-                                    <div className='relative w-40 h-20 rounded-sm overflow-hidden '>
+                                    <div className='relative w-20 h-20 rounded-sm overflow-hidden '>
                                         <Image src={product?.images[0]} fill alt='' />
                                     </div>
                                 </TableCell>

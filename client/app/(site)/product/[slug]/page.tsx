@@ -21,11 +21,11 @@ interface Params {
 }
 
 const SingleProduct = async ({ params }: Params) => {
-
+  
   const { slug } = await params
   const productName = decodeURIComponent(slug);
   const product = (await getAllProducts()).filter((pro) => { return pro.name === productName })[0]
-  console.log(product)
+  console.log({product : product})
 
   if (!product) {
     return <NotFound />

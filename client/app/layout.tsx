@@ -22,7 +22,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
 
   return (
-    <html lang="en" className={poppins.className}>
+    <html lang="ar" className={poppins.className}>
       <body className="antialiased" >
         <Providers>
           {children}
