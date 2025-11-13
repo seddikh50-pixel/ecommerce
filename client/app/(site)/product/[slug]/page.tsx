@@ -25,19 +25,16 @@ const SingleProduct = async ({ params }: Params) => {
   const { slug } = await params
   const productName = decodeURIComponent(slug);
   const product = (await getAllProducts()).filter((pro) => { return pro.name === productName })[0]
-  console.log({product : product})
 
   if (!product) {
     return <NotFound />
   }
 
   return (
-    <div className=' h-screen'>
-
+    <div className=' '>
 
       <Container>
         <ShareBadge />
-
         <div className='flex flex-col md:flex-row gap-5 '>
           <div className=' w-full md:w-2/5'>
             <ImageView images={product?.images} />

@@ -57,10 +57,6 @@ const SearchProducts = ({ products }: ListProducts) => {
         return () => clearTimeout(timer);
     }, [search]);
 
-    // const resetProducts = () => {
-    //     setSearch('')
-    //     setSearchProducts([])
-    // }
 
     return (
         <div className={`absolute  w-full shadow-sm bg-gray-100 h-64  z-40 left-0 lg:hidden xl:hidden transition-all duration-300 top-20 p-4 ${showSearch ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0 pointer-events-none"} `}>
@@ -85,6 +81,7 @@ const SearchProducts = ({ products }: ListProducts) => {
                         </div>
 
                         :
+                        searchProducts.length > 0 ?
                         searchProducts.map((product) => {
                             return (
                                 <div key={product.id} className='flex gap-2 py-2 text-black p-2 border-b justify-start items-center'>
@@ -92,7 +89,7 @@ const SearchProducts = ({ products }: ListProducts) => {
                                     <Link onClick={() => setShowSearch(false)} href={`/product/${product.name}`} className='text-black '> <span className="text-sm">{product.name}</span> </Link>
                                 </div>
                             )
-                        })
+                        }) : <h1 className='text-black p-2'>No products</h1>
 
                     }
                 </div>

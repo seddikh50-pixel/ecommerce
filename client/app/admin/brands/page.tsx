@@ -5,6 +5,7 @@ import React from 'react'
 
 const page =async () => {
     const getBrands = await prisma.brand.findMany() 
+   
   return (
     <div className='flex'>
       <BrandForm/>

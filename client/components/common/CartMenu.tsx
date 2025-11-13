@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useCartStore } from "@/app/store/store";
 
 const CartMenu = () => {
+ 
     const [isOpen, setIsOpen] = useState(false);
     const [cartCount, setCartCount] = useState(2);
     const { items } = useCartStore()

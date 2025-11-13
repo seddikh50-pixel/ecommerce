@@ -10,6 +10,7 @@ export async function POST(request: NextRequest) {
         const formData = await request.formData();
         const name = formData.get('name') as string;
         const image = formData.get('image') as File;
+       
         if (!name || image.size === 0) {
             return NextResponse.json({ success: false, msg: "image and name are required" }, {})
         }
@@ -26,7 +27,7 @@ export async function POST(request: NextRequest) {
         })
 
 
-       revalidateTag("all-brands")
+       revalidateTag("brands")
         return NextResponse.json({ msg: 'brand added successfuly', success: true }, { status: 201 })
     } catch (error) {
         return NextResponse.json({ msg: error, success: false }, { status: 404 });

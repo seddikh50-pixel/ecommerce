@@ -2,6 +2,7 @@ import prisma from "@/lib/prisma"
 import { NextRequest, NextResponse } from "next/server"
 import path from "path"
 import { promises as fs } from 'fs'
+import { revalidateTag } from "next/cache"
 
 
 interface Params {
@@ -11,12 +12,18 @@ export async function DELETE(request: NextRequest, { params }: { params: Params 
 
     const { id } = await params
 
-    const brand = await prisma.brand.findUnique({
-        where: { id }
-    });
+    if (!id) {
+        return NextResponse.json({ success: false, message: "Missing id parameter" });
+    }
+
 
 
     try {
+        const brand = await prisma.brand.findUnique({
+            where: { id }
+        });
+
+
         await prisma.brand.delete({
             where: {
                 id
@@ -28,7 +35,7 @@ export async function DELETE(request: NextRequest, { params }: { params: Params 
             await fs.unlink(filePath);
         }
 
-
+        revalidateTag("brands")
         return NextResponse.json({ success: true, message: 'banner deleted successfully' })
     } catch (error) {
         return NextResponse.json({ success: false, message: 'failed deleted', error })

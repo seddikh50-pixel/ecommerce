@@ -102,21 +102,26 @@ const Searchbar = ({ products }: ListProducts) => {
       {showResults &&
 
         <div className='absolute top-full border rounded-md w-full mt-1 z-49 bg-white'>
-          <h1 className='p-2 text-black border-b bg-gray-50  '>Popular Products</h1>
+        
           <div className=''>
 
             {loading ?
-              <div className="text-black text-sm flex justify-center items-center gap-2 py-4">
+              (<div className="text-black text-sm flex justify-center items-center gap-2 py-4">
                 <Loader className='animate-spin text-store  ' />
                 <h1>Loading...</h1>
-              </div> : searchProducts.map((product) => {
+              </div> )
+              :
+              searchProducts.length > 0 ? 
+             ( searchProducts.map((product) => {
                 return (
                   <div key={product.id} className='flex p-2 border border-gray-100 pt-2 gap-2'>
                     <SearchIcon className='text-black' />
                     <Link href={`/product/${product.name}`} className='text-black'>{product.name} </Link>
                   </div>
                 )
-              })}
+              })) : (<h1 className='text-black  p-2'>No products</h1>)
+              
+              }
           </div>
         </div>
 

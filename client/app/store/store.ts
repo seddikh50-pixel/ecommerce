@@ -31,14 +31,15 @@ interface CartState {
   allShopProducts: Product[]
   setShopProducts: (shopProducts: Product[]) => void
   setAllShopProducts: (allShopProducts: Product[]) => void
-  filterProductByCategoryId: (id: string) => void
+  filterProductByCategoryId: (id: string, id2: string) => void
+  filterProductByBrandId: (id: string, id2: string) => void
   resetSelection: () => void
   loading: boolean
   // clearCart: () => void
-  isMobileListOpen : boolean,
-  setIsMobileListOpen : (value : boolean)=> void ,
-   showSearch : boolean,
-  setShowSearch : (value : boolean)=> void 
+  isMobileListOpen: boolean,
+  setIsMobileListOpen: (value: boolean) => void,
+  showSearch: boolean,
+  setShowSearch: (value: boolean) => void
 }
 
 
@@ -53,18 +54,34 @@ export const useCartStore = create<CartState>()(
       setShopProducts: (shopProducts) => set({ shopProducts })
       ,
       loading: false,
-      filterProductByCategoryId: (id: string) => {
+      filterProductByCategoryId: (id: string, id2: string) => {
+        console.log(id, id2)
         set({ loading: true })
         setTimeout(() => {
           const shopProduct = get().allShopProducts
-          const filterProduct = shopProduct.filter((product) => product.categoryId === id)
+          const filterProduct = shopProduct.filter((product) => id2 ?
+            product.categoryId === id && product.brandId === id2
+            : product.categoryId === id)
+          console.log(filterProduct)
           set({ shopProducts: filterProduct, loading: false })
         }, 100)
       },
-       isMobileListOpen : false ,
-      setIsMobileListOpen : (value) => set({isMobileListOpen : value}),
-      showSearch : false ,
-      setShowSearch : (value) => set({showSearch : value}),
+      filterProductByBrandId: (id: string, id2: string) => {
+        set({ loading: true })
+        setTimeout(() => {
+          const shopProduct = get().allShopProducts
+
+          const filterProduct = shopProduct.filter((product) => id2 ?
+            product.brandId === id && product.categoryId === id2
+            : product.brandId === id)
+          console.log(filterProduct)
+          set({ shopProducts: filterProduct, loading: false })
+        }, 100)
+      },
+      isMobileListOpen: false,
+      setIsMobileListOpen: (value) => set({ isMobileListOpen: value }),
+      showSearch: false,
+      setShowSearch: (value) => set({ showSearch: value }),
       resetSelection: () => {
         const products = get().allShopProducts
         set({ shopProducts: products })
@@ -137,51 +154,3 @@ export const useCartStore = create<CartState>()(
     }
   )
 )
-
-// export const useCartStore = create<CartState>((set, get) => ({
-//   items: [],
-//   addToCart: (product: Product) => {
-
-//     const items = get().items
-//     const existingItem = items.find((item) => item.id === product.id)
-
-//     if (existingItem) {
-//       // إذا المنتج موجود بالفعل → زِد الكمية
-//       const updatedItems = items.map((item) =>
-//         item.id === product.id
-//           ? { ...item, quantity: item.quantity + 1 }
-//           : item
-//       )
-//       set({ items: updatedItems })
-//     } else {
-//       // إذا المنتج جديد → أضِفه بكمية 1
-//       const newItem: CartItem = { ...product, quantity: 1 }
-//       set({ items: [...items, newItem] })
-//       console.log(newItem)
-//       console.log(items)
-//     }
-//   },
-
-// ➖ تقليل الكمية
-// decreaseQuantity: (id) => {
-//   const updatedItems = get().items
-//     .map((item) =>
-//       item.id === id
-//         ? { ...item, quantity: item.quantity - 1 }
-//         : item
-//     )
-//     .filter((item) => item.quantity > 0) // حذف إذا أصبحت الكمية 0
-//   set({ items: updatedItems })
-// },
-
-// // ❌ حذف منتج نهائيًا
-// removeFromCart: (id) => {
-//   const filtered = get().items.filter((item) => item.id !== id)
-//   set({ items: filtered })
-// },
-
-// // 🧹 تفريغ السلة بالكامل
-// clearCart: () => set({ items: [] }),
-
-// }));
-

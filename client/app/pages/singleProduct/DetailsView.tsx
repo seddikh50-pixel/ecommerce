@@ -91,7 +91,7 @@ const DetailsView = ({ product }: DetailsViewProps) => {
               <Button className='flex-1 bg-violet-500 hover:bg-violet-400'><ShoppingBasket /> Add To Cart </Button>
               <Heart size={35} className='border p-1 rounded-sm border-violet-500 text-violet-500' />
             </div>
-            <div className='flex justify-between border-b py-5'>
+            <div className='grid xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 justify-between border-b py-5'>
               {
                 choices.map((item,index)=> {
                   return (
