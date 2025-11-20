@@ -67,7 +67,6 @@ const Products = ({ products }: products) => {
     }
     return (
         <div>
-
             <Table>
 
                 <TableHeader className='border border-white'>
@@ -83,16 +82,16 @@ const Products = ({ products }: products) => {
                         return (
                             <TableRow key={index} className='hover:bg-white/15'>
                                 <TableCell className="font-medium">
-                                    <div className='relative w-20 h-20 rounded-sm overflow-hidden '>
+                                    <div className='relative xl:w-20 xl:h-20 lg:w-20 lg:h-20 md:w-15 md:h-15 sm:w-10 sm:h-10 h-10 w-10  rounded-sm overflow-hidden '>
                                         <Image src={product?.images[0]} fill alt='' />
                                     </div>
                                 </TableCell>
-                                <TableCell className='text-white'>{product.name}</TableCell>
+                                <TableCell className='text-white text-sm'>{product.name.slice(0,20)}...</TableCell>
                                 <TableCell className='text-white'>{product.price}</TableCell>
                                 <TableCell className=" text-white  h-full ">
                                     <div className='flex items-center justify-center gap-5 '>
                                         <X className=' hover:bg-white hover:text-black cursor-pointer' onClick={() => deleteProduct(product.id)} />
-                                        <Edit className=' hover:bg-white hover:text-black cursor-pointer' />
+                                        <Edit className=' hover:bg-white hover:text-black cursor-pointer xl:block lg:block md:block sm:hidden hidden' />
                                     </div>
                                 </TableCell>
                             </TableRow>

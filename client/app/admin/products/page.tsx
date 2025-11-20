@@ -13,8 +13,8 @@ const page = async () => {
     <div>
       <div>
         <div className='flex justify-between px-10 p-5'>
-          <div className='text-white text-2xl'>List Of products</div>
-          <Link href={"products/add"} className='text-black border px-5 py-1 border-white font-bold rounded-sm bg-white'>Add Product</Link>
+          <div className='text-white xl:text-2xl lg:text-2xl md:text-xl sm:text-lg'>List Of products</div>
+          <Link href={"products/add"} className='text-black border xl:text-lg lg:text-lg md:text-lg sm:text-md px-5 py-1 border-white font-bold rounded-sm bg-white'>Add Product</Link>
 
         </div>
         <div>

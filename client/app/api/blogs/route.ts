@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
             }
         })
 
-        revalidateTag("all-blogs")
+        revalidateTag("blogs")
 
         return NextResponse.json({ msg: 'blog added successfuly', success: true }, { status: 201 })
     } catch (error) {

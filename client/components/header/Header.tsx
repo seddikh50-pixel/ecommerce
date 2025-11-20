@@ -1,3 +1,4 @@
+"use client"
 import Link from "next/link"
 import Container from "../common/Container"
 import Searchbar from "./Searchbar"
@@ -9,12 +10,49 @@ import MobileMenu from "./MobileMenu"
 import Image from "next/image"
 import { getAllProducts } from "@/lib/cache"
 import SearchProducts from "./SearchProducts"
+import { usePathname } from "next/navigation"
 
-const Header = async () => {
-  const products = await getAllProducts()
+
+
+interface category {
+    id: string
+    name: string
+    image: string
+}
+
+interface brand {
+    id: string
+    name: string
+    image: string
+}
+
+
+interface Products {
+    isStocked: boolean;
+    name: string;
+    id: string;
+    category: category
+    images: string[];
+    price: string;
+    description: string;
+    categoryId: string;
+    brandId: string;
+    brand: brand
+    stripeProductId: string | null; // ✅ أضف | null هنا
+    stripePriceId: string | null;
+};
+
+interface ListProducts {
+    products: Products[]
+}
+
+const Header =  ({ products }: ListProducts) => {
+  const pathName = usePathname()
+
+  
 
   return (
-    <header className="bg-black  text-white/80 sticky top-0 z-49 backdrop:blur-md">
+    <header className={`bg-black  text-white/80 sticky top-0 z-49 backdrop:blur-md ${pathName === "/login" ? "hidden" : "block"}`}>
      
       <Container className="flex gap-3 relative items-center justify-between py-4 ">
          <SearchProducts products={products} />

@@ -58,7 +58,7 @@ const BrandForm = () => {
 
 
     return (
-        <div className="p-6  w-lg bg-black shadow-lg max-w-lg" style={{ height: "calc(100vh - 56px)" }}>
+        <div className="p-6  xl:w-lg sm:w-96 w-64 shadow-lg max-w-lg xl:h-[calc(100vh-56px)] lg:h-[calc(100vh-56px)]" >
             {/* عنوان */}
             <h1 className="mb-8 text-2xl font-semibold text-white  pb-2">
                 Add New Brand
@@ -74,7 +74,7 @@ const BrandForm = () => {
                     type="text"
                     name="name"
                     placeholder="Brand Name"
-                    className="px-4 py-2 placeholder:text-gray-400 text-white rounded-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="px-4 py-2   placeholder:text-gray-400 text-white rounded-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 <input
                 onChange={handlePreview}
@@ -82,10 +82,10 @@ const BrandForm = () => {
                     id='brand'
                     name="image"
                     placeholder="Brand Name"
-                    className="px-4 py-2 hidden"
+                    className="px-4 py-2 hidden "
                 />
                 {!preview ? <label htmlFor="brand" className='relative rounded-sm w-full h-64 flex justify-center items-center cursor-pointer'><Upload width={40} className='text-white'/>  </label>
-                    : <div className='relative w-full h-64 rounded-sm overflow-hidden '><Image fill alt={preview} className='bg-white' src={preview} /></div>}
+                    : <div className='relative w-full h-64 rounded-sm overflow-hidden border-1 border-white '><Image fill alt={preview} className='bg-white ' src={preview} /></div>}
                 {/* إدخال الصورة */}
 
 

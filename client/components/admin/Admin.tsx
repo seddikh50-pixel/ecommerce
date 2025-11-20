@@ -18,23 +18,12 @@ const Admin = () => {
 
 
     return (
-        <div className='flex'>
-          Dashboard 
+        <div className='flex justify-between items-center h-full '>
+            <h1 className='text-white  border-gray-400 text-xl font-bold'>SedTech Admin</h1>
+            <Button className='rounded-sm bg-white text-black' onClick={handleLogout} >log out </Button>
         </div>
     )
 }
 
 export default Admin
-
-
-
-
-
-
-
-
-
-
-
-
 

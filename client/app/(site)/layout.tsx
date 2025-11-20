@@ -9,11 +9,12 @@ import { getAllProducts } from "@/lib/cache";
 
 export default async function SiteLayout({ children }: { children: React.ReactNode }) {
   const products = await getAllProducts()
+
   return (
     <div className=" relative ">
    
       <MobileLinks />
-      <Header />
+      <Header products={products} />
       {children}
       <FooterTop />
       <Footer />

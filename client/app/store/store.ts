@@ -1,3 +1,4 @@
+"use client"
 import { Product } from '@/lib/generated/prisma';
 import { create } from 'zustand';
 import { persist } from "zustand/middleware"
@@ -23,7 +24,7 @@ interface GoogleUser {
 
 interface CartState {
   items: CartItem[]
-  addToCart: (product: Product, user: GoogleUser) => void
+  addToCart: (product: Product) => void
   increaseQuantity: (id: string) => void
   decreaseQuantity: (id: string) => void
   removeFromCart: (id: string) => void
@@ -55,7 +56,6 @@ export const useCartStore = create<CartState>()(
       ,
       loading: false,
       filterProductByCategoryId: (id: string, id2: string) => {
-        console.log(id, id2)
         set({ loading: true })
         setTimeout(() => {
           const shopProduct = get().allShopProducts
@@ -87,7 +87,7 @@ export const useCartStore = create<CartState>()(
         set({ shopProducts: products })
 
       },
-      addToCart: (product: Product, user: GoogleUser) => {
+      addToCart: (product: Product) => {
         const items = get().items
 
         const existingItem = items.find((item) => item.id === product.id)

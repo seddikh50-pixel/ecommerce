@@ -52,10 +52,10 @@ const ListBrands = ({ brands }: ListBrands) => {
     }
 
     return (
-        <div className='flex flex-col p-5 gap-2  border-l border-gray-400  '>
+        <div className='flex flex-col p-5 gap-2  border-l border-gray-400 w-full  '>
             {brands?.map((br, index) => {
                 return (
-                    <div key={index} className='flex justify-between w-100 items-center gap-2 hover:bg-gray-800  rounded-sm  '>
+                    <div key={index} className='flex justify-between xl:w-100 items-center gap-2 hover:bg-gray-800  rounded-sm  '>
                         <div className='relative w-20 h-10  bg-white rounded-md'><Image src={br.image} fill alt='brand' className='object-contain' /></div>
                         <h2 className='text-white'> {br.name} </h2>
                         <X className='text-white cursor-pointer' onClick={() => deleteBrand(br.id)} />

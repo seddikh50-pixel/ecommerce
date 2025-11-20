@@ -1,5 +1,7 @@
 import { ReactNode } from "react";
 import SideBar from "@/components/admin/SideBar";
+import Admin from "@/components/admin/Admin";
+
 
 type LayoutProps = {
   children: ReactNode;
@@ -8,11 +10,11 @@ type LayoutProps = {
 const Layout = ({ children }: LayoutProps) => {
   return <>
     <div className=" bg-black">
-      <div className="h-14 p-4 w-full  bg-black border-b border-gray-600">
-        <h1 className='text-white w-full border-gray-400 '>SedTech Admin</h1>
+      <div className="h-14  w-full px-10   bg-black border-b border-gray-600">
+          <Admin/>
       </div>
       <div className="flex" >
-        <div className="w-64 ">
+        <div className="xl:w-64 lg:w-64 w-48   ">
           <SideBar  />
         </div>
         <div className="flex-1">

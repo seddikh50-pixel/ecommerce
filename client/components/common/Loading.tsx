@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 
 const AppLoader = () => {
   return (
-    <div className="w-full h-screen fixed flex justify-center items-center flex-col gap-3 bg-black z-10">
+    <div className="w-full h-screen fixed flex justify-center items-center flex-col gap-3 bg-white z-10">
       <div className="flex gap-3 justify-center items-center">
         <h1 className="text-store text-xl font-bold">SedTech</h1>
         <Image alt="SedTech logo" width={50} height={50} src="/storelogo.png" />

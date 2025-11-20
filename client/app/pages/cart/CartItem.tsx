@@ -105,7 +105,7 @@ const CartItem = () => {
                               />
                             </div>
                           </TableCell>
-                          <TableCell className="font-semibold">{c.name}</TableCell>
+                          <TableCell className="font-semibold">{c.name.slice(0,10)}...</TableCell>
                           <TableCell>{c.brand.name}</TableCell>
                           <TableCell>
                             <div className="flex items-center gap-3 font-bold">
@@ -152,7 +152,7 @@ const CartItem = () => {
                       className="border border-gray-200 rounded-xl p-3 flex flex-col gap-3 shadow-sm"
                     >
                       <div className="flex gap-3 items-center justify-between">
-                        <div className="relative w-20 h-20 bg-amber-400 flex-shrink-0">
+                        <div className="relative w-20 h-20  flex-shrink-0">
                           <Image
                             src={c.images[0]}
                             alt={c.name}
@@ -161,7 +161,7 @@ const CartItem = () => {
                           />
                         </div>
                         <div className="flex flex-col">
-                          <span className="font-semibold text-sm">{c.name}</span>
+                          <span className="font-semibold text-sm">{c.name.slice(0,20)}..</span>
                           <span className="text-gray-500 text-xs">{c.brand.name}</span>
                         </div>
                       </div>

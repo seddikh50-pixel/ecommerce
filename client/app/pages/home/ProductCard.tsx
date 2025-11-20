@@ -64,7 +64,7 @@ const ProductCard = ({ product }: { product: Products }) => {
             <Link href={`/product/${product.name}`} className='w-full h-44 relative'>
                 <Image loading='lazy' alt={product.images[0]} src={product.images[0]} fill className=' object-contain group-hover:scale-110 hoverEffect' />
             </Link>
-            {/* <h2 className='font-light text-sm text-gray-700'>{product.category.name} </h2> */}
+            <h2 className='font-light text-sm text-gray-700'>{product.category?.name} </h2>
             <h1 className='line-clamp-1 font-bold text-base'>{product.name} </h1>
             <PriceFormatter price={product.price} />
 
@@ -83,14 +83,8 @@ const ProductCard = ({ product }: { product: Products }) => {
                     <h3>Total</h3>
                     <h1>{+product.price * itemCheck.quantity} </h1>
                 </div>
-            </div> : <div className=' h-10'><Button onClick={() => addToCart(product, user!)} className='max-w-36   rounded-full bg-store hover:bg-store/90'><ShoppingCartIcon /> Add to Cart</Button></div>
+            </div> : <div className=' h-10'><Button onClick={() => addToCart(product)} className='max-w-36 rounded-full bg-store hover:bg-store/90'><ShoppingCartIcon /> Add to Cart</Button></div>
             }
-
-
-
-
-
-
 
         </div>
     )

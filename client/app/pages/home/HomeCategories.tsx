@@ -36,7 +36,7 @@ const HomeCategories = async () => {
   return (
     <div>
       <Container className='mt-20'>
-        <div className='grid  gap-4 lg:grid-cols-4  sm:grid-cols-2 '>
+        <div className='grid  gap-4 lg:grid-cols-4 grid-cols-1  sm:grid-cols-2 '>
           {data.map((t, index) => {
             return (
               <div key={index} className='flex border  bg-white px-6  py-3 rounded-sm hover:border-store justify-center items-center hoverEffect gap-5'>
@@ -53,7 +53,7 @@ const HomeCategories = async () => {
           <h1 className="font-semibold text-xl">Featured Category</h1>
           <p>Get Your Desired Product From Featured Category!</p>
         </Text>
-        <div className='grid lg:grid-cols-8 md:grid-cols-4 grid-cols-4  gap-3 mt-10'>
+        <div className='grid lg:grid-cols-8 md:grid-cols-4 grid-cols-2  gap-3 mt-10'>
           {categories.map((cat, index) => {
             return (
               <div  key={index} className='flex flex-col gap-2 items-center  py-7 border border-transparent hoverEffect bg-white hover:border rounded-md hover:border-store'>

@@ -7,7 +7,7 @@ const page =async () => {
     const getBrands = await prisma.brand.findMany() 
    
   return (
-    <div className='flex'>
+    <div className='flex xl:flex-row lg:flex-row md:flex-col sm:flex-col flex-col    '>
       <BrandForm/>
       <ListBrands brands={getBrands} />
     </div>

@@ -1,7 +1,7 @@
 import Container from '@/components/common/Container'
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel'
 import React from 'react'
-import { getBanners } from "@/lib/cache";
+// import { getBanners } from "@/lib/cache";
 import Image from 'next/image';
 import prisma from '@/lib/prisma';
 import ProductCoparison from '../ProductCoparison';

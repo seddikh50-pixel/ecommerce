@@ -1,3 +1,5 @@
+"use client"
+import { useCartStore } from '@/app/store/store';
 import { Button } from '@/components/ui/button';
 import { CircleQuestionMark, GitCompare, Heart, Share, ShoppingBasket, StarIcon, Truck } from 'lucide-react';
 import Link from 'next/link';
@@ -27,6 +29,8 @@ type Product = {
   brand: Brand;
   category: Category;
   isStocked: boolean;
+  stripeProductId: string | null
+  stripePriceId: string | null
 };
 
 //
@@ -37,6 +41,7 @@ type DetailsViewProps = {
 };
 
 const DetailsView = ({ product }: DetailsViewProps) => {
+  const {addToCart} = useCartStore()
    const choices = [
     {
       name : "Compare color",
@@ -88,7 +93,7 @@ const DetailsView = ({ product }: DetailsViewProps) => {
               {product?.isStocked ? <h3 className='text-green-700 bg-green-100 inline px-2 py-1 rounded-sm mb-5'>In Stock</h3> : <h3 className='text-red-700 inline bg-red-200'>Out Of Stock</h3>}
             </div>
             <div className='flex items-center gap-2 py-5 border-b border-gray-200 '>
-              <Button className='flex-1 bg-violet-500 hover:bg-violet-400'><ShoppingBasket /> Add To Cart </Button>
+              <Button onClick={() => addToCart(product)} className='flex-1 bg-violet-500 hover:bg-violet-400'><ShoppingBasket /> Add To Cart </Button>
               <Heart size={35} className='border p-1 rounded-sm border-violet-500 text-violet-500' />
             </div>
             <div className='grid xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 justify-between border-b py-5'>

@@ -7,10 +7,7 @@ const poppins = Poppins({ subsets: ["latin"], weight: ["400", "700", "900"], var
 import { Providers } from "@/components/snackProvider/ProviderSnack";
 
 
-// تحميل الخطوط وإعداد متغيرات CSS
-// const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-montserrat" });
-// const geist = Geist({ subsets: ["latin"], variable: "--font-geist" });
-// const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" });
+
 
 export const metadata: Metadata = {
   title: "Create Next App",

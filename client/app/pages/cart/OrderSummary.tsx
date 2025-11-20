@@ -52,7 +52,7 @@ const OrderSummary = () => {
   return (
     <div>
       <Container>
-        <div className='w-[500px] border rounded-sm bg-white p-6 mt-5 flex flex-col space-y-4 '>
+        <div className='w-full xl:w-[500px] lg:w-[500px] md:w-[400px] border rounded-sm bg-white p-6 mt-5 flex flex-col space-y-4 '>
           <h1 className='font-bold'>Order Summary</h1>
           <div className='flex justify-between items-center'>
             <h1>Subtotal</h1>

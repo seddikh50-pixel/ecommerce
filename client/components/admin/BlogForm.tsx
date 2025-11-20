@@ -51,20 +51,12 @@ const BlogForm = () => {
     }
 
 
-
-
-
-
-
-
-
-
     return (
-        <div className="p-6  w-lg bg-black shadow-lg max-w-lg" style={{ height: "calc(100vh - 56px)" }}>
+        <div className="p-6  xl:w-lg lg:w-lg md:w-md sm:w-md w-58 bg-black shadow-lg max-w-lg lg:h-[calc(100vh-56px)]" >
             {/* عنوان */}
             <h1 className="mb-8 text-2xl font-semibold text-white  pb-2">
                 Add New Brand
-            </h1>   
+            </h1>
 
             <form
                 onSubmit={addBrand}
@@ -72,26 +64,28 @@ const BlogForm = () => {
             >
                 {/* إدخال الاسم */}
                 <input
-                    
+
                     type="text"
                     name="title"
                     placeholder="Title"
                     className="px-4 py-2 placeholder:text-gray-400 text-white rounded-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-                 <Textarea
-                    name="content"
-                    placeholder="Blog"
-                    className="px-4 py-2 placeholder:text-gray-400 text-white rounded-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
+                <div className='w-96 overflow-hidden h-32'>
+                    <Textarea
+                        name="content"
+                        placeholder="Blog"
+                        className="px-4  py-2 placeholder:text-gray-400 text-white rounded-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                </div>
                 <input
-                onChange={handlePreview}
+                    onChange={handlePreview}
                     type="file"
                     id='brand'
                     name="image"
                     placeholder="Brand Name"
                     className="px-4 py-2 hidden"
                 />
-                {!preview ? <label htmlFor="brand" className='relative rounded-sm w-full h-64 flex justify-center items-center cursor-pointer'><Upload width={40} className='text-white'/>  </label>
+                {!preview ? <label htmlFor="brand" className='relative rounded-sm w-full h-64 flex justify-center items-center cursor-pointer'><Upload width={40} className='text-white' />  </label>
                     : <div className='relative w-full h-64 rounded-sm overflow-hidden '><Image fill alt={preview} className='bg-white' src={preview} /></div>}
                 {/* إدخال الصورة */}
 
@@ -102,7 +96,7 @@ const BlogForm = () => {
                     type="submit"
                     className="bg-black border-white border hover:bg-white hover:text-black hoverEffect white text-white font-medium py-2 px-4 rounded-sm transition-colors"
                 >
-                   Publish Blog
+                    Publish Blog
                 </Button>
             </form>
         </div>

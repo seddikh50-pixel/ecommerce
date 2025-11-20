@@ -42,16 +42,16 @@ const SideBar = () => {
     }
   ]
   return (
-    <div className='w-64 pt-5 flex flex-col space-y-5 border border-gray-700 border-t-0 bg-black/90' style={{ height: "calc(100vh - 56px)" }}>
+    <div className='xl:w-64 lg:w-64 md:w-48 sm:w-48 pt-5 flex flex-col space-y-5 border-t-0 bg-black/90' style={{ height: "calc(100vh - 56px)" }}>
      
       <div className='space-y-5 px-4'>
         {dashLinks.map((link, index) => {
           return (
             <div key={index} className='' >
               <Link className={`flex justify-between border-gray-300 gap-2 px-2 ${link.href === pathname ? "bg-blue-300 text-black " : "bg-black text-white"}`} href={link.href}>
-                <div className={`flex justify-between gap-2 p-2 w-full`}>
-                  <h1 className='flex gap-2 items-center'>{link.icon}{link.link}</h1>
-                  <ChevronRight />
+                <div className={`flex xl:justify-between lg:justify-between justify-evenly gap-2 p-2 w-full`}>
+                  <h1 className='flex gap-2 items-center text-sm'>{link.icon}{link.link}</h1>
+                  <ChevronRight size={20}/>
                 </div>
               </Link>
             </div>
