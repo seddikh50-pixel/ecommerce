@@ -20,8 +20,8 @@ const page = async () => {
 
         </div>
         <div className=''>
-          
-         <Products products={products} />
+
+          <Products products={products} />
         </div>
       </div>
     </div>
