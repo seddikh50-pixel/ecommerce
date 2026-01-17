@@ -32,9 +32,6 @@ export async function DELETE(request: NextRequest, { params }: { params: Params 
         revalidateTag("products")
 
 
-        // const filePath = path.join(process.cwd(), "public" , images?.image)
-        // await fs.unlink(filePath)
-
 
         return NextResponse.json({ success: true, message: 'product deleted successfully', data: images?.images })
     } catch (error) {
