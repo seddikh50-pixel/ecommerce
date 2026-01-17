@@ -16,7 +16,7 @@ export async function GET() {
 
 
 export async function POST(request: Request) {
-
+   
     try {
         const formData = await request.formData();
         const count = await prisma.banner.count();
@@ -33,7 +33,7 @@ export async function POST(request: Request) {
 
         // مثال: حفظ الصورة في مجلد داخل project
         await writeFile(`./public/banners/banner${count + 1}.jpg`, buffer);
-      
+
 
         return NextResponse.json({ message: 'Banner added successfuly', success: true }, { status: 201 });
     } catch (error) {

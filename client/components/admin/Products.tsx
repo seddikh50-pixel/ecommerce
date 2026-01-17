@@ -14,6 +14,9 @@ import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { Edit, X } from 'lucide-react'
 import { useSnackbar } from 'notistack'
+import Link from 'next/link';
+
+import { Button } from '../ui/button'
 
 interface Props {
     id: string;
@@ -30,7 +33,8 @@ interface products {
 }
 
 const Products = ({ products }: products) => {
-    
+    console.log(products)
+
     const route = useRouter()
     const { enqueueSnackbar } = useSnackbar()
 
@@ -66,15 +70,19 @@ const Products = ({ products }: products) => {
 
     }
     return (
-        <div>
+        <div className=''>
+                        <h1 className='font-bold text-xl '>All Products</h1>
+
             <Table>
 
                 <TableHeader className='border border-white'>
                     <TableRow >
-                        <TableHead className="w-60 text-white ">Image</TableHead>
-                        <TableHead className="w-100 text-white ">Name</TableHead>
-                        <TableHead className="w-100 text-white ">Price</TableHead>
-                        <TableHead className="text-center text-whitew-100">Action</TableHead>
+                        <TableHead className="w-60  ">Image</TableHead>
+                        <TableHead className="w-100  ">Name</TableHead>
+                        <TableHead className="w-100  ">Price</TableHead>
+                        {/* <TableHead className="w-40  "> category</TableHead>
+                        <TableHead className="w-40  "> brand</TableHead> */}
+                        <TableHead className="text-center ">Action</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -82,16 +90,18 @@ const Products = ({ products }: products) => {
                         return (
                             <TableRow key={index} className='hover:bg-white/15'>
                                 <TableCell className="font-medium">
-                                    <div className='relative xl:w-20 xl:h-20 lg:w-20 lg:h-20 md:w-15 md:h-15 sm:w-10 sm:h-10 h-10 w-10  rounded-sm overflow-hidden '>
+                                    <div className='relative xl:w-20 xl:h-15 lg:w-20 lg:h-15 md:w-15 md:h-15 sm:w-10 sm:h-10 h-10 w-10  rounded-sm overflow-hidden '>
                                         <Image src={product?.images[0]} fill alt='' />
                                     </div>
                                 </TableCell>
-                                <TableCell className='text-white text-sm'>{product.name.slice(0,20)}...</TableCell>
-                                <TableCell className='text-white'>{product.price}</TableCell>
-                                <TableCell className=" text-white  h-full ">
+                                <TableCell className=' text-sm'>{product.name.slice(0, 20)}...</TableCell>
+                                <TableCell className=''>${product.price}</TableCell>
+                                <TableCell className="   h-full ">
                                     <div className='flex items-center justify-center gap-5 '>
-                                        <X className=' hover:bg-white hover:text-black cursor-pointer' onClick={() => deleteProduct(product.id)} />
-                                        <Edit className=' hover:bg-white hover:text-black cursor-pointer xl:block lg:block md:block sm:hidden hidden' />
+                                        {/* <X className=' hover:bg-white hover:text-black cursor-pointer' onClick={() => deleteProduct(product.id)} /> */}
+                                        {/* <Edit className=' hover:bg-white hover:text-black cursor-pointer xl:block lg:block md:block sm:hidden hidden' /> */}
+                                        <Link href={`/admin/products/edit/${product.id}`} className='bg-blue-600 rounded-sm hover:bg-blue-600/90 text-white px-4 py-1'>Edit</Link>
+                                        <button className='bg-red-600 rounded-sm hover:bg-red-600/90 text-white px-4 py-1' onClick={() => deleteProduct(product.id)}>Delete</button>
                                     </div>
                                 </TableCell>
                             </TableRow>

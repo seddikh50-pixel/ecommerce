@@ -18,8 +18,10 @@ const Admin = () => {
 
 
     return (
-        <div className='flex'>
-          Dashboard 
+        <div className='flex justify-center items-center text-white h-full'>
+            <p className='max-w-[800px] text-center text-6xl'>
+                Welcome to the sed-store Admin Dashboard!
+                You can manage products, orders, and users easily from here.</p>
         </div>
     )
 }

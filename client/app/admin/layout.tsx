@@ -9,8 +9,8 @@ type LayoutProps = {
 
 const Layout = ({ children }: LayoutProps) => {
   return <>
-    <div className=" bg-black">
-      <div className="h-14  w-full px-10   bg-black border-b border-gray-600">
+    <div className="">
+      <div className="h-14  w-full px-10   bg-white border-b border-gray-600">
           <Admin/>
       </div>
       <div className="flex" >

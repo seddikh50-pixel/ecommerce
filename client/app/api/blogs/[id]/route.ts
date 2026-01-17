@@ -13,13 +13,13 @@ interface Params {
 
 export async function DELETE(request: NextRequest, { params }: { params: Params }) {
     const { id } = await params
-    console.log(id)
     try {
         const blogImage = await prisma.blog.findUnique({ where: { id } })
         if (!blogImage) {
             return NextResponse.json({ success: false, message: 'there is no brand' })
         }
         await prisma.blog.delete({ where: { id } })
+        console.log({theDeleted: blogImage?.image})
         if (blogImage?.image) {
             const filePath = path.join(process.cwd(), "public", blogImage.image)
             await fs.unlink(filePath)

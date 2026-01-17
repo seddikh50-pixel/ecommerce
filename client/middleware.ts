@@ -7,6 +7,7 @@ import adminMiddleware from "./middlewares/adminMiddleware";
 import { cookies } from "next/headers";
 import authAdmin from "./middlewares/adminMiddleware";
 import { userMiddleware } from "./middlewares/userMiddleware";
+import { strict } from "assert";
 
 
 
@@ -24,6 +25,20 @@ const middleware = async (request: NextRequest) => {
       return NextResponse.next();
    }
 
+   if (pathname.startsWith('/admin')) {
+      const token = cookieStore.get('token')?.value
+      if (!token) {
+         return NextResponse.redirect(new URL("/login", request.url));
+      }
+      const jwtVerify = await authAdmin(token)
+      
+      if (!jwtVerify) {
+         return NextResponse.redirect(new URL("/login", request.url));
+
+      }
+       return NextResponse.next()
+   }
+
 
 }
 
@@ -33,5 +48,5 @@ export default middleware;
 // }
 
 export const config = {
-   matcher: ["/cart", "/"],
+   matcher: ["/cart", '/api/:path*', '/admin/:path*']
 };

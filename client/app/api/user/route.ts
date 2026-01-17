@@ -16,7 +16,7 @@ const secret = new TextEncoder().encode(process.env.JWT_SECRET!);
 export async function POST(request: Request) {
     try {
         const cookieHeader = request.headers.get("cookie") || ""
-        console.log("Raw cookie header:", cookieHeader)
+    
 
         const cookies = cookieHeader.split(';')
         const token = cookies.find(c => c.trim().startsWith('user='))?.split('user=')[1]
@@ -32,7 +32,6 @@ export async function POST(request: Request) {
 
         const { payload } = await jwtVerify(token, secret)
         const userPayload = payload as JwtPayload
-
         const newUser = await prisma.user.upsert({
             where: { id: userPayload.id },
             update: { cart },

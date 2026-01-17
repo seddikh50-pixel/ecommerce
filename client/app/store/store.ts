@@ -5,6 +5,7 @@ import { persist } from "zustand/middleware"
 import { enqueueSnackbar } from 'notistack'
 
 
+
 export interface CartItem extends Product {
   quantity: number;
 }
@@ -18,7 +19,7 @@ interface GoogleUser {
   given_name?: string | null;
   family_name?: string | null;
   picture?: string | null;
-
+  createdAt: string
 }
 
 
@@ -41,6 +42,8 @@ interface CartState {
   setIsMobileListOpen: (value: boolean) => void,
   showSearch: boolean,
   setShowSearch: (value: boolean) => void
+  user: GoogleUser | null
+  setUser: (user: GoogleUser | null) => void;
 }
 
 
@@ -62,7 +65,6 @@ export const useCartStore = create<CartState>()(
           const filterProduct = shopProduct.filter((product) => id2 ?
             product.categoryId === id && product.brandId === id2
             : product.categoryId === id)
-          console.log(filterProduct)
           set({ shopProducts: filterProduct, loading: false })
         }, 100)
       },
@@ -74,7 +76,6 @@ export const useCartStore = create<CartState>()(
           const filterProduct = shopProduct.filter((product) => id2 ?
             product.brandId === id && product.categoryId === id2
             : product.brandId === id)
-          console.log(filterProduct)
           set({ shopProducts: filterProduct, loading: false })
         }, 100)
       },
@@ -137,13 +138,14 @@ export const useCartStore = create<CartState>()(
 
       // // ❌ حذف منتج نهائيًا
       removeFromCart: (id) => {
-        console.log("seddik")
         const filtered = get().items.filter((item) => item.id !== id)
         set({ items: filtered })
         enqueueSnackbar("product deleted successfully", { variant: 'success' })
 
 
       },
+      user: null,  // القيمة الابتدائية للمستخدم
+      setUser: (user: GoogleUser | null) => set({ user }),
 
       // // 🧹 تفريغ السلة بالكامل
       // clearCart: () => set({ items: [] }),

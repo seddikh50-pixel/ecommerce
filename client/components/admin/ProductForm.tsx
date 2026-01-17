@@ -34,6 +34,7 @@ const ProductForm = ({ categories, brands }: Props) => {
         sitterFn: React.Dispatch<React.SetStateAction<string>>
     ) => {
         const file = event.target.files?.[0]
+        console.log(file)
         if (file) {
             sitterFn(URL.createObjectURL(file))
         }
@@ -51,6 +52,7 @@ const ProductForm = ({ categories, brands }: Props) => {
                 }
             )
             const data = await response.json()
+            console.log(data)
             if (data.success) {
                 enqueueSnackbar(data.msg, { variant: 'success' })
                 route.push('/admin/products ')

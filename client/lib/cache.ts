@@ -41,6 +41,26 @@ export const getAllBlogs = unstable_cache(
 );
 
 
+export const getAllOrders = unstable_cache(
+  async () => {
+    return prisma.order.findMany();
+  },
+  ["all-orders"],
+  { tags: ["orders"] }
+);
+
+
+
+export const getAllUsers = unstable_cache(
+  async () => {
+    return prisma.user.findMany();
+  },
+  ["all-users"],
+  { tags: ["users"] }
+);
+
+
+
 
 
 

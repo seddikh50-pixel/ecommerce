@@ -11,6 +11,7 @@ const ProductGrid = async () => {
   //   },
   // });
   const products = await getAllProducts();
+  console.log(products)
   
 
   return (

@@ -11,12 +11,13 @@ const Page = async () => {
 
   return (
     <div className='flex xl:flex-row lg:flex-row md:flex-col sm:flex-col flex-col  '>
-      <div className="xl:w-96 lg:w-96 p-4 xl:h-[calc(100vh-3.5rem)] lg:h-[calc(100vh-3.5rem)]  sm:w-full  border-gray-600 border-t-0 overflow-y-scroll stylish-scroll ">
-        <ListBanners banners={getBanners} />
-      </div>
-      <div className='flex-1 p-4 b '>
+       <div className=' xl:w-96  lg:w-96  p-4 b '>
         <BannerForm />
       </div>
+      <div className="p-4 flex-1 border-l  xl:h-[calc(100vh-3.5rem)] lg:h-[calc(100vh-3.5rem)]  sm:w-full  border-gray-600 border-t-0  ">
+        <ListBanners banners={getBanners} />
+      </div>
+     
     </div>
   )
 }

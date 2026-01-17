@@ -7,12 +7,12 @@ import { Button } from '@/components/ui/button'
 
 
 const OrderSummary = () => {
-  const { items } = useCartStore()
-  const [total, setTotal] = useState <number>();
+  const { items, user } = useCartStore()
+  const [total, setTotal] = useState<number>();
   useEffect(() => {
     // if (items && items.length > 0) {
-      const total = items.reduce((acc, cur) => acc + Number(cur.price) * (cur.quantity || 1), 0)
-      setTotal(total)
+    const total = items.reduce((acc, cur) => acc + Number(cur.price) * (cur.quantity || 1), 0)
+    setTotal(total)
     // }
 
   }, [items]);
@@ -20,32 +20,39 @@ const OrderSummary = () => {
 
 
   const handleCheckout = async () => {
-  try {
-    // نحضّر البيانات التي سنرسلها إلى API
-    const response = await fetch("/api/checkout", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        items: items.map(item => ({
-          stripePriceId: item.stripePriceId, // من قاعدة البيانات
-          quantity: item.quantity || 1,
-        })),
-      }),
-    });
 
-    const data = await response.json();
+    try {
+      // نحضّر البيانات التي سنرسلها إلى API
+      const response = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          items: items.map(item => ({
+            stripePriceId: item.stripePriceId, // من قاعدة البيانات
+            quantity: item.quantity || 1,
+          })),
+          user : user
+        }),
 
-    if (data.url) {
-      // تحويل المستخدم إلى صفحة الدفع في Stripe
-      window.location.href = data.url;
-    } else {
-      alert("❌ حدث خطأ أثناء إنشاء جلسة الدفع.");
+
+
+
+      });
+
+      const data = await response.json();
+     
+
+      if (data.url) {
+        // تحويل المستخدم إلى صفحة الدفع في Stripe
+        window.location.href = data.url;
+      } else {
+        alert("❌ حدث خطأ أثناء إنشاء جلسة الدفع.");
+      }
+    } catch (error) {
+      console.error("Error during checkout:", error);
+      alert("⚠️ تعذر الاتصال بخدمة الدفع.");
     }
-  } catch (error) {
-    console.error("Error during checkout:", error);
-    alert("⚠️ تعذر الاتصال بخدمة الدفع.");
-  }
-};
+  };
 
 
 

@@ -6,7 +6,15 @@ import { useSnackbar } from 'notistack'
 import Swal from "sweetalert2"
 import { useRouter } from 'next/navigation';
 
-
+import {
+    Table,
+    TableBody,
+    TableCaption,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from "@/components/ui/table"
 
 
 interface Banner {
@@ -58,16 +66,45 @@ const ListBanners = ({ banners }: ListBannersProps) => {
         <div className='flex flex-col gap-3  px-3 hover: '>
 
 
-            <h1 className='font-bold text-xl text-white'>All Banners</h1>
-            {banners.map((banner) => {
-                return (
-                    <div key={banner.id} className='flex justify-between items-center'>
-                        <Image width={100} height={40} priority alt='' className='object-cover' src={banner.image} />
-                        <h1 className='text-white'>{banner.image.split('.')[0].slice(9,)} </h1>
-                        <X onClick={() => deleteBanner(banner.id)} className='text-white cursor-pointer' />
-                    </div>
-                )
-            })}
+            <h1 className='font-bold text-xl '>All Banners</h1>
+       
+
+
+
+            
+           <Table>
+                <TableCaption>A list of banners.</TableCaption>
+
+                <TableHeader className='border border-white'>
+                    <TableRow >
+                        <TableHead className="w-60  ">Banner Image</TableHead>
+                        {/* <TableHead className="w-40  "> category</TableHead>
+                        <TableHead className="w-40  "> brand</TableHead> */}
+                        <TableHead className="text-center ">Action</TableHead>
+                    </TableRow>
+                </TableHeader>
+                <TableBody>
+                    {banners.map((banner, index) => {
+                        return (
+                            <TableRow key={index} className='hover:bg-white/15'>
+                                <TableCell className="font-medium">
+                                    <div className='relative xl:w-20 xl:h-15 lg:w-20 lg:h-15 md:w-15 md:h-15 sm:w-10 sm:h-10 h-10 w-10  rounded-sm overflow-hidden '>
+                                        <Image src={banner?.image} fill alt='' />
+                                    </div>
+                                </TableCell>
+                                <TableCell className="   h-full ">
+                                    <div className='flex items-center justify-center gap-5 '>
+                                        {/* <X className=' hover:bg-white hover:text-black cursor-pointer' onClick={() => deleteProduct(product.id)} /> */}
+                                        {/* <Edit className=' hover:bg-white hover:text-black cursor-pointer xl:block lg:block md:block sm:hidden hidden' /> */}
+                                        {/* <Link href={`/admin/categories/edit/${category.id}`} className='bg-blue-600 rounded-sm hover:bg-blue-600/90 text-white px-4 py-1'>Edit</Link> */}
+                                        <button className='bg-red-600 rounded-sm hover:bg-red-600/90 text-white px-4 py-1' onClick={() => deleteBanner(banner.id)}>Delete</button>
+                                    </div>
+                                </TableCell>
+                            </TableRow>
+                        )
+                    })}
+                </TableBody>
+            </Table>
         </div>
     )
 }

@@ -42,7 +42,7 @@ const SideCategoryAndBrand = ({ categories, brands }: SideCategoryAndBrandProps)
         resetSelection()
     }
     return (
-        <div className='w-64  border-r border-store p-3 xl:block lg:block bg-white sm:hidden md:block hidden  '>
+        <div className='w-64  border-r border-store p-3 xl:block lg:block bg-white sm:hidden md:block hidden max-w-52  '>
             <div className='flex flex-col  gap-4 pt-4'>
                 <h1 className='font-bold leading-2 text-lg py-1'>Product Categories</h1>
                 {categories.map((cat) => (

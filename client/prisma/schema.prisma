@@ -61,6 +61,20 @@ model User {
   email     String   @unique
   name      String?
   picture   String?
-  cart      Json? // نخزن هنا مصفوفة المنتجات
   createdAt DateTime @default(now())
+  cart      Json?
+  orders    Order[] // علاقة one-to-many مع الطلبات
+}
+
+model Order {
+  id              String   @id @default(uuid())
+  fullName        String
+  stripeSessionId String   @unique
+  email           String
+  userId          String
+  user            User     @relation(fields: [userId], references: [id])
+  amount          Int
+  status          String
+  items           Json // هنا نخزن المنتجات
+  createdAt       DateTime @default(now())
 }

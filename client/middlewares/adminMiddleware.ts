@@ -9,7 +9,7 @@ const authAdmin = async (token: string) => {
 
 
     try {
-
+     
         const secret = new TextEncoder().encode(process.env.ADMIN_SECRET_KEY);
         const { payload } = await jwtVerify(token, secret);
         if (payload.role !== "admin") {

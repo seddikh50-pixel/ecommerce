@@ -11,25 +11,28 @@ interface Params {
 
 export async function DELETE(request: NextRequest, { params }: { params: Params }) {
     const { id } = await params
-
+ 
     try {
-        const categoryImage = await prisma.category.findUnique({
+        const existingCategory = await prisma.category.findUnique({
             where: { id }
         })
 
+      
 
-        if (!categoryImage) {
+        if (!existingCategory) {
             return NextResponse.json({ success: false, message: 'there is no category' })
         }
 
-        await prisma.category.delete({
+        const deletedCategory = await prisma.category.delete({
             where: { id }
         })
+       
+      
 
-        if (categoryImage?.image) {
-            const filePath = path.join(process.cwd(), "public", categoryImage.image)
-            await fs.unlink(filePath)
-        }
+        // if (existingCategory?.image ) {
+        //     const filePath = path.join(process.cwd(), "public", existingCategory.image)
+        //     await fs.unlink(filePath)
+        // }
         revalidateTag("categories")
 
         return NextResponse.json({ success: true, message: 'category deleted successfully' })

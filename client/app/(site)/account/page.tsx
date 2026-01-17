@@ -27,8 +27,7 @@ interface GoogleUser {
 export default function AccountPage() {
   const pathName = usePathname()
   const router = useRouter()
-  const { items } = useCartStore()
-  const [user, setUser] = useState<GoogleUser | null>(null);
+  const { items , user , setUser } = useCartStore()
   const [loading, setLoading] = useState(true);
   const [spinner, setSpinner] = useState(false);
 
@@ -55,16 +54,12 @@ export default function AccountPage() {
 
         });
         const data = await res.json()
+        console.log(data)
         if (data.success) {
-          console.log(data.user)
           setUser(data.user)
         } else {
           setUser(null)
         }
-
-
-
-
 
       } catch (error) {
         console.log(error)

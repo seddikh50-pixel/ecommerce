@@ -52,7 +52,7 @@ const BlogForm = () => {
 
 
     return (
-        <div className="p-6  xl:w-lg lg:w-lg md:w-md sm:w-md w-58 bg-black shadow-lg max-w-lg lg:h-[calc(100vh-56px)]" >
+        <div className="p-6  xl:w-lg lg:w-lg md:w-md sm:w-md w-58  shadow-lg max-w-lg lg:h-[calc(100vh-56px)]" >
             {/* عنوان */}
             <h1 className="mb-8 text-2xl font-semibold text-white  pb-2">
                 Add New Brand
@@ -68,28 +68,30 @@ const BlogForm = () => {
                     type="text"
                     name="title"
                     placeholder="Title"
-                    className="px-4 py-2 placeholder:text-gray-400 text-white rounded-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="px-4 py-2 placeholder:text-gray-400 rounded-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 <div className='w-96 overflow-hidden h-32'>
                     <Textarea
                         name="content"
                         placeholder="Blog"
-                        className="px-4  py-2 placeholder:text-gray-400 text-white rounded-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="px-4  py-2 placeholder:text-gray-400  rounded-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                 </div>
-                <input
+              <div className='w-96 h-64 border-1 border-black/20 rounded-md  '>
+                  <input
                     onChange={handlePreview}
                     type="file"
                     id='brand'
                     name="image"
                     placeholder="Brand Name"
-                    className="px-4 py-2 hidden"
+                    className="px-4 py-2 hidden k"
                 />
-                {!preview ? <label htmlFor="brand" className='relative rounded-sm w-full h-64 flex justify-center items-center cursor-pointer'><Upload width={40} className='text-white' />  </label>
-                    : <div className='relative w-full h-64 rounded-sm overflow-hidden '><Image fill alt={preview} className='bg-white' src={preview} /></div>}
+            
+                {!preview ? <label htmlFor="brand" className='relative rounded-sm w-full h-64 flex justify-center items-center cursor-pointer '><Upload width={40} className='text-black ' />  </label>
+                    : <div className='relative w-full h-64 rounded-sm overflow-hidden  '><Image fill alt={preview} className='bg-white' src={preview} /></div>}
                 {/* إدخال الصورة */}
 
-
+              </div>
 
                 {/* زر الإضافة */}
                 <Button

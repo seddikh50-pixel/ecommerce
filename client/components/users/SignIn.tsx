@@ -6,11 +6,12 @@ interface GoogleUser {
     id: string;
     email: string;
     verified_email: boolean;
-    name: string;
-    given_name: string;
-    family_name: string;
-    picture: string;
-    createdAt : string
+    name?: string | null;
+    given_name?: string | null;
+    family_name?: string | null;
+     picture?: string | null;
+    createdAt: string
+
 }
 interface infos {
     handleLogout: () => void,
@@ -28,7 +29,7 @@ const SignIn = ({ handleLogout, user }: infos) => {
                         <Image
                             width={100}
                             height={100}
-                            src={user?.picture}
+                            src={user!.picture!}
                             alt="User"
                             className="w-22 h-22 rounded-full mx-auto"
                         />

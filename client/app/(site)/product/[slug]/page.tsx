@@ -1,19 +1,16 @@
 import NotFound from '@/app/not-found';
 import { getAllProducts } from '@/lib/cache';
-import prisma from '@/lib/prisma';
+
 import React from 'react'
 
 import Container from '@/components/common/Container';
-import Footer from '@/components/foooter/Footer';
-import FooterTop from '@/components/foooter/FooterTop';
+
 import ImageView from '@/app/pages/singleProduct/ImageView';
 import ShareBadge from '../../../pages/singleProduct/ShareBadge'
 import DetailsView from '@/app/pages/singleProduct/DetailsView';
 
-import { Heart, Images, ShoppingBag, ShoppingBasket, Star, StarIcon } from 'lucide-react';
 // import ProductCharastiristics from '@/components/common/ProductCharastiristics'
-import Image from 'next/image';
-import { Button } from '@/components/ui/button';
+
 interface Params {
   params: {
     slug: string;

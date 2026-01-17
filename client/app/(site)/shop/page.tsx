@@ -11,7 +11,6 @@ const page = async () => {
     const products = await getAllProducts()
     const categories = await getAllCategories()
     const brands = await getAllBrands()
-    console.log(products)
 
     return (
         <div className='bg-gray-100 p-4   '>

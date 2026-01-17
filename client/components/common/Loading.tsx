@@ -21,7 +21,7 @@ const AppLoader = () => {
         className="flex gap-3 justify-center items-center"
       >
         <Loader2 className="animate-spin text-blue-700" />
-        <h1  className="text-blue-700 font-bold">sedtech is loading..</h1>
+        <h1  className="text-blue-700 font-bold text-xl">Sedtech is loading..</h1>
       </motion.div>
     </div>
   );

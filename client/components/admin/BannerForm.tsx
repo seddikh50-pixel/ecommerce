@@ -51,7 +51,7 @@ const BannerForm = () => {
     }
 
     return (
-       <div className="p-6 bg-gray-900 rounded-xl shadow-lg max-w-md  ">
+       <div className="p-6   rounded-xl shadow-lg max-w-md  ">
                   {/* عنوان */}
                   <h1 className="mb-8 text-2xl font-semibold text-white  pb-2">
                       Add New Banner

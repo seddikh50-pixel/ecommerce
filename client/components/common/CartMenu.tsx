@@ -5,9 +5,11 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { useCartStore } from "@/app/store/store";
+import Pathname from "../pathname/Pathname";
+import { usePathname } from "next/navigation";
 
 const CartMenu = () => {
- 
+    const pathname = usePathname()
     const [isOpen, setIsOpen] = useState(false);
     const [cartCount, setCartCount] = useState(2);
     const { items } = useCartStore()
@@ -19,7 +21,7 @@ const CartMenu = () => {
     ];
 
     return (
-        <div className="fixed bottom-5 right-5 z-50">
+        <div className={`fixed bottom-5 right-5 z-50 ${pathname === "/login" && "hidden"}`}>
             <div className="relative bg-violet-600 text-white w-12 h-12 flex justify-center items-center rounded-full">
                 {/* زر التحكم */}
                 <button

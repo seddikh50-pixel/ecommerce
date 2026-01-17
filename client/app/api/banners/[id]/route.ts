@@ -14,7 +14,6 @@ export async function DELETE(request: NextRequest, { params }: { params :Params 
     const banner = await prisma.banner.findUnique({
         where: { id }
     });
-    console.log(banner)
 
     try {
         await prisma.banner.delete({

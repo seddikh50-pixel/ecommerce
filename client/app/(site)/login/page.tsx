@@ -35,7 +35,6 @@ const Login = () => {
         const formData = new FormData(e.currentTarget);
         const email = formData.get('email');
         const password = formData.get('password');
-        console.log(email, password)
 
         const response = await fetch('/api/admin/login', {
             method: 'POST',
@@ -46,6 +45,10 @@ const Login = () => {
 
         })
         const data = await response.json();
+    
+        if(!data.success){
+            enqueueSnackbar(data.error,{ variant: 'error' })
+        }
         if (data.success) {
             enqueueSnackbar(data.msg, { variant: 'success' })
             router.push('/admin')
