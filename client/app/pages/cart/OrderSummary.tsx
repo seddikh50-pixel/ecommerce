@@ -31,7 +31,7 @@ const OrderSummary = () => {
             stripePriceId: item.stripePriceId, // من قاعدة البيانات
             quantity: item.quantity || 1,
           })),
-          user : user
+          user: user
         }),
 
 
@@ -40,7 +40,8 @@ const OrderSummary = () => {
       });
 
       const data = await response.json();
-     
+      console.log(data)
+  
 
       if (data.url) {
         // تحويل المستخدم إلى صفحة الدفع في Stripe

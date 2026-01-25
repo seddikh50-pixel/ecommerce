@@ -16,7 +16,7 @@ const middleware = async (request: NextRequest) => {
    const pathname = request.nextUrl.pathname
    const cookieStore = await cookies();
    const userCookie = cookieStore.get('user')?.value
-   if (pathname.startsWith('/cart')) {
+   if (pathname.startsWith('/cart') || pathname.startsWith('/success')) {
       if (!userCookie) {
          return NextResponse.redirect(new URL("/account", request.url));
       }
@@ -48,5 +48,5 @@ export default middleware;
 // }
 
 export const config = {
-   matcher: ["/cart", '/api/:path*', '/admin/:path*']
+   matcher: ["/cart", '/api/:path*', '/admin/:path*', "/success"],
 };

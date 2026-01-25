@@ -33,7 +33,6 @@ export async function POST(req: Request) {
       const products = Array.isArray(productsRaw) ? productsRaw : []; 
       const userId = session.metadata?.userId
       const fullName = session.metadata?.useName as string
-      console.log({fullName})
       if (!userId) {
         throw new Error("Missing userId in Stripe session metadata");
       }
@@ -53,7 +52,6 @@ export async function POST(req: Request) {
         }
       })
       revalidateTag('orders')
-      console.log({order : order})
 
     }
 

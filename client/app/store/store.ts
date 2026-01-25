@@ -44,9 +44,10 @@ interface CartState {
   setShowSearch: (value: boolean) => void
   user: GoogleUser | null
   setUser: (user: GoogleUser | null) => void;
-  filterCompareProductOne: (id: string) => void
-  filterCompareProductTwo: (id: string) => void
+
 }
+
+
 
 
 
@@ -91,7 +92,6 @@ export const useCartStore = create<CartState>()(
 
       },
       addToCart: (product: Product) => {
-        console.log(product)
         const items = get().items
 
         const existingItem = items.find((item) => item.id === product.id)
@@ -100,12 +100,12 @@ export const useCartStore = create<CartState>()(
             item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
           )
           set({ items: updatedItems })
-          enqueueSnackbar(`${product?.name} increased successfully`, { variant: 'success' })
+          enqueueSnackbar(`${product?.name.slice(0,20)} increased successfully`, { variant: 'success' })
 
         } else {
           const newItems = { ...product, quantity: 1 }
           set({ items: [...items, newItems] })
-          enqueueSnackbar(`${product?.name} Added successfully`, { variant: 'success' })
+          enqueueSnackbar(`${product?.name.slice(0,20)} Added successfully`, { variant: 'success' })
 
         }
 
@@ -153,20 +153,7 @@ export const useCartStore = create<CartState>()(
       // // 🧹 تفريغ السلة بالكامل
       // clearCart: () => set({ items: [] }),
 
-      filterCompareProductOne: (name: string) => {
-
-        const products = get().allShopProducts;
       
-        const filteredProduct = products.find((product) => product.name.startsWith(name));
-        
-      },
-      filterCompareProductTwo: (name: string) => {
-          
-
-        const products = get().allShopProducts;
-        const filteredProduct = products.find((product) => product.name === name);
-      
-      }
 
     }),
     {

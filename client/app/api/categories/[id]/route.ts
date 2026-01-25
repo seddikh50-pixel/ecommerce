@@ -29,10 +29,10 @@ export async function DELETE(request: NextRequest, { params }: { params: Params 
        
       
 
-        // if (existingCategory?.image ) {
-        //     const filePath = path.join(process.cwd(), "public", existingCategory.image)
-        //     await fs.unlink(filePath)
-        // }
+        if (existingCategory?.image ) {
+            const filePath = path.join(process.cwd(), "public", existingCategory.image)
+            await fs.unlink(filePath)
+        }
         revalidateTag("categories")
 
         return NextResponse.json({ success: true, message: 'category deleted successfully' })

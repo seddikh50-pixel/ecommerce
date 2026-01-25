@@ -94,7 +94,6 @@ const ListOrders = ({ orders, products }: ListOrdersProps) => {
             }
           )
           const data = await response.json()
-          console.log({ data: data })
           if (data.success) {
             enqueueSnackbar(data.message, { variant: 'success' })
             route.push('/admin/orders ')
@@ -138,8 +137,8 @@ const ListOrders = ({ orders, products }: ListOrdersProps) => {
                 <TableCell>{order.amount}$</TableCell>
                 <TableCell className="">{order.status}</TableCell>
                 <TableCell className='flex gap-3'>
-                  <Link href={`/admin/orders/${order.id}`} className='bg-green-600 rounded-sm flex justify-center items-center hover:bg-green-600/90 text-white px-2 py-1'>View detail</Link>
-                  <Button className='bg-red-600 rounded-sm hover:bg-red-600/90 text-white px-4 py-1' onClick={() => deleteOrder(order.id)}>Delete</Button>
+                  <Link href={`/admin/orders/${order.id}`} className='bg-green-600 rounded-sm flex justify-center items-center hover:bg-green-600/90 text-white  px-2 '>View detail</Link>
+                  <Button className='bg-red-600 rounded-sm hover:bg-red-600/90 text-white px-4 ' onClick={() => deleteOrder(order.id)}>Delete</Button>
                 </TableCell>
               </TableRow>
             )

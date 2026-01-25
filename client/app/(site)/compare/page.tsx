@@ -15,7 +15,7 @@ const page = async ({
   searchParams: { prod1?: string; prod2?: string }
 }) => {
 
-  
+
 
   const brands = await prisma.brand.findMany();
 
@@ -60,48 +60,53 @@ const page = async ({
         {/* Header row */}
         <div className="flex justify-between bg-gray-100 p-4 font-semibold">
           <div className="w-1/5 font-bold">Feature</div>
-          <div className="w-2/5 text-center">Product 1</div>
-          <div className="w-2/5 text-center">Product 2</div>
+          <div className="w-2/5 text-center ">Product-1</div>
+          <div className="w-2/5 text-center">Product-2</div>
         </div>
 
         {/* Name row */}
-        <div className="flex justify-between items-center p-4 border-b">
+        <div className="flex justify-between items-center p-4 border">
           <div className="w-1/5 font-bold">Name</div>
           <div className="w-2/5 text-center text-blue-800">{product1?.name || "-"}</div>
           <div className="w-2/5 text-center text-blue-800">{product2?.name || "-"}</div>
         </div>
 
         {/* Image row */}
-        <div className="flex justify-between items-center p-4 border-b">
-          <div className="w-1/5 font-bold">Image</div>
-          <div className="w-2/5 text-center relative h-40">
+        <div className="flex justify-between gap-5 items-center p-4 border">
+          <div className="w-1/5 font-bold ">Image</div>
+          <div className="w-2/5 relative h-70  rounded-xl overflow-hidden bg-gray-500 flex items-center justify-center">
             {product1?.images?.[0] && (
-              <Image fill src={product1.images[0]} alt={product1.name} className="object-contain" />
+              <Image fill src={product1.images[0]} alt={product1.name} className="object-cover " />
             )}
           </div>
-          <div className="w-2/5 text-center relative h-40 ">
+          <div className="w-2/5 relative h-70 rounded-xl overflow-hidden bg-gray-100 flex items-center justify-center">
             {product2?.images?.[0] && (
-              <Image fill src={product2.images[0]} alt={product2.name} className="object-contain" />
+              <Image
+                fill
+                src={product2.images[0]}
+                alt={product2.name}
+                className="object-cover"
+              />
             )}
           </div>
         </div>
 
         {/* Brand row */}
-        <div className="flex justify-between items-center p-4 border-b">
-          <div className="w-1/5 font-bold">Brand</div>
+        <div className="flex justify-between items-center p-4 border">
+          <div className="w-1/5 font-bold ">Brand</div>
           <div className="w-2/5 text-center">{brands.find((bra) => bra.id === product1?.brandId || "-")?.name}   </div>
           <div className="w-2/5 text-center">{brands.find((bra) => bra.id === product2?.brandId || "-")?.name}</div>
         </div>
 
         {/* Price row */}
-        <div className="flex justify-between items-center p-4 border-b">
+        <div className="flex justify-between items-center p-4 border">
           <div className="w-1/5 font-bold">Price</div>
           <div className="w-2/5 text-center">${product1?.price || "-"}</div>
           <div className="w-2/5 text-center">${product2?.price || "-"}</div>
         </div>
 
         {/* Availability row */}
-        <div className="flex justify-between items-center p-4 border-b">
+        <div className="flex justify-between items-center p-4 border">
           <div className="w-1/5 font-bold">Availability</div>
           <div className={`w-2/5 text-center ${product1?.isStocked ? 'text-green-600' : 'text-red-600'}`}>
             {product1?.isStocked ? "In Stock" : "Out of Stock"}
@@ -111,13 +116,13 @@ const page = async ({
           </div>
         </div>
 
-        <div className="flex justify-between items-center p-4 border-b">
-          <div className="w-1/5 font-medium">Action</div>
-              
+        <div className="flex justify-between items-center p-4 border">
+          <div className="w-1/5 font-bold">Action</div>
+
           <div className="w-2/5 text-center">
             <ComparisonCart product={product1!} />
           </div>
-          <div className="w-2/5 text-center">
+          <div className="w-2/5    text-center">
             <ComparisonCart product={product2!} />
           </div>
         </div>

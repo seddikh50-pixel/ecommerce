@@ -9,7 +9,6 @@ import React from 'react'
 const page = async () => {
   const products = await prisma.product.findMany()
   const users = await prisma.user.findMany()
-  console.log(users)
 
   return (
     <div className=''>

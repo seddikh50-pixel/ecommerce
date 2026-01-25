@@ -7,7 +7,6 @@ import { cookies } from 'next/headers'
 export async function POST(request: Request) {
 
     const { email, password } = await request.json()
-    console.log(email,password)
     if (email !== process.env.ADMIN_EMAIL || password !== process.env.ADMIN_PASSWORD) {
         return NextResponse.json({ success: false, error: "wrong crendtials" }, { status: 404 })
     }

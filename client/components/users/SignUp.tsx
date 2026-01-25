@@ -15,7 +15,7 @@ interface infos {
 const SignUp = ({ handleGoogleSignIn, spinner }: infos) => {
   return (
     <div>
-      <div className="w-screen h-screen  flex justify-center items-center ">
+      <div className="w-screen   flex justify-center items-center ">
         <div className="w-120 rounded-2xl border overflow-hidden flex flex-col  pb-7   ">
           <div className="bg-gray-900  flex gap-4 justify-center items-center flex-col p-4">
             <div className="flex justify-center items-center">

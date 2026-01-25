@@ -10,7 +10,7 @@ interface CheckoutItem {
 export async function POST(req: Request) {
   try {
     const { items, user } = await req.json();
-    
+
     if (!items || items.length === 0) {
       return NextResponse.json({ error: "No items provided" }, { status: 400 });
     }
@@ -24,7 +24,7 @@ export async function POST(req: Request) {
         price: item.stripePriceId,
         quantity: item.quantity,
       })),
-      success_url: `${process.env.NEXT_PUBLIC_URL}/success`,
+      success_url: `${process.env.NEXT_PUBLIC_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.NEXT_PUBLIC_URL}/cancel`,
       metadata: {
         products: JSON.stringify(items),

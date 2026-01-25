@@ -54,7 +54,6 @@ export default function AccountPage() {
 
         });
         const data = await res.json()
-        console.log(data)
         if (data.success) {
           setUser(data.user)
         } else {
@@ -92,7 +91,6 @@ export default function AccountPage() {
       window.location.href = `${googleAuthUrl}?${params.toString()}`;
 
     } catch (error) {
-      console.log(error)
       setSpinner(false)
     }
   };
@@ -110,7 +108,7 @@ export default function AccountPage() {
     <>
       <LinkHeader pathName={pathName} />
       {loading ? <AppLoader /> :
-        <div className="flex flex-col  min-h-screen text-center">
+        <div className="flex flex-col py-20 text-center">
           {user ? (
             <SignIn handleLogout={handleLogout} user={user} />
           ) : (

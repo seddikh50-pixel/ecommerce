@@ -33,7 +33,6 @@ interface products {
 }
 
 const Products = ({ products }: products) => {
-    console.log(products)
 
     const route = useRouter()
     const { enqueueSnackbar } = useSnackbar()

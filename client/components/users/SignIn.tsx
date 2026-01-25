@@ -49,15 +49,6 @@ const SignIn = ({ handleLogout, user }: infos) => {
                         </button>
                     </div>
                 </div>
-
-
-
-
-
-                <div className='grid grid-cols-4'>
-                    <Link href={"/cart"}>Cart</Link>
-                </div>
-
             </Container>
 
 

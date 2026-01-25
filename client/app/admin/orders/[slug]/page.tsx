@@ -13,7 +13,6 @@ const page = async ({ params }: Params) => {
     const {slug} = await params
 
     const allOrders = await getAllOrders()
-   
     const order = allOrders.find((order) => {
         return order.id === slug;
     });

@@ -16,8 +16,7 @@ const secret = new TextEncoder().encode(process.env.JWT_SECRET!);
 export async function POST(request: Request) {
     try {
         const cookieHeader = request.headers.get("cookie") || ""
-    
-
+        console.log(cookieHeader)
         const cookies = cookieHeader.split(';')
         const token = cookies.find(c => c.trim().startsWith('user='))?.split('user=')[1]
         const body = await request.json()
@@ -43,7 +42,6 @@ export async function POST(request: Request) {
                 cart
             }
         })
-        // console.log(newUser.cart.state)
         return NextResponse.json({ success: true, msg: "Welcome!", user: newUser }, { status: 200 })
     } catch {
         return NextResponse.json({ success: false, msg: "Invalid or expired token" }, { status: 401 });

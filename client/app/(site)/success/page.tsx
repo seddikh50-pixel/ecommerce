@@ -1,9 +1,12 @@
-import React from 'react'
+
+import Success from '@/components/common/Success';
+
 
 const page = () => {
+ 
   return (
     <div>
-        success
+        <Success />
       
     </div>
   )
