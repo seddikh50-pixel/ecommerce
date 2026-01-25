@@ -12,9 +12,7 @@ import DetailsView from '@/app/pages/singleProduct/DetailsView';
 // import ProductCharastiristics from '@/components/common/ProductCharastiristics'
 
 interface Params {
-  params: {
-    slug: string;
-  };
+ params: Promise<{ slug: string }>
 }
 
 const SingleProduct = async ({ params }: Params) => {

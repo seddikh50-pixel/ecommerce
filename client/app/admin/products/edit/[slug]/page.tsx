@@ -3,7 +3,7 @@ import prisma from '@/lib/prisma'
 import { Edit } from 'lucide-react';
 import React from 'react'
 
-const page = async ({params}: { params: { slug: string } }) => {
+const page = async ({params}: { params: Promise<{ slug: string }> }) => {
     const { slug } =  await  params;
     const product = await prisma.product.findUnique({
         where: {

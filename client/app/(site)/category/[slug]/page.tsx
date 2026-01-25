@@ -8,7 +8,7 @@ import React from 'react'
 
 
 interface CategoryName {
-    params: { slug: string }
+    params: Promise<{ slug: string }>
 
 }
 const page = async ({ params }: CategoryName) => {

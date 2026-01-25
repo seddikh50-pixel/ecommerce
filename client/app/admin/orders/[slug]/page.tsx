@@ -4,9 +4,7 @@ import React from 'react'
 
 
 interface Params {
-    params: {
-        slug: string;
-    };
+    params: Promise<{ slug: string }>
 }
 
 const page = async ({ params }: Params) => {
