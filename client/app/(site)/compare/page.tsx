@@ -12,8 +12,14 @@ import React from 'react'
 const page = async ({
   searchParams,
 }: {
-  searchParams: { prod1?: string; prod2?: string }
+  searchParams: Promise<{
+    prod1?: string
+    prod2?: string
+  }>
 }) => {
+
+
+  const { prod1, prod2 } = await searchParams;
 
 
 
@@ -21,12 +27,12 @@ const page = async ({
 
   const product1 = await prisma.product.findUnique({
     where: {
-      name: searchParams?.prod1 || '',
+      name: prod1 || '',
     },
   });
   const product2 = await prisma.product.findUnique({
     where: {
-      name: searchParams?.prod2 || '',
+      name: prod2 || '',
     },
   });
 
