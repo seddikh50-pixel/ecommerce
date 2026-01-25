@@ -46,9 +46,10 @@ const Searchbar = ({ products }: ListProducts) => {
   const [searchProducts, setSearchProducts] = useState<Products[]>([]);
   // const [products, setProducts] = useState(product)
   const [loading, setLoading] = useState(false)
-  const [featuredProducts, setFeaturedProducts] = useState([])
+  // const [featuredProducts, setFeaturedProducts] = useState([])
   const searchRef = React.useRef<HTMLDivElement>(null)
   const searchMobileRef = React.useRef<HTMLDivElement>(null)
+
 
 
 

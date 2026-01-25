@@ -8,6 +8,7 @@ import ProductCoparison from '../ProductCoparison';
 
 const Banner = async () => {
   const banner = await prisma.banner.findMany()
+  const products = await prisma.product.findMany()
 
   return (
     <Container className='grid grid-cols-1 pt-5 lg:grid-cols-4 gap-2 h-max    '>
@@ -31,7 +32,7 @@ const Banner = async () => {
         </Carousel>
       </div>
       <div className='hidden lg:flex flex-col h-full gap-2 '>
-        <ProductCoparison/>
+        <ProductCoparison products={products}/>
         <div className='w-full relative h-1/2'>
           <Image fill alt='smallBanner' className='object-cover rounded-md' src={"/smallBanner.jpg"}/>
         </div>

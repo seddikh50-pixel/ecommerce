@@ -44,6 +44,8 @@ interface CartState {
   setShowSearch: (value: boolean) => void
   user: GoogleUser | null
   setUser: (user: GoogleUser | null) => void;
+  filterCompareProductOne: (id: string) => void
+  filterCompareProductTwo: (id: string) => void
 }
 
 
@@ -89,6 +91,7 @@ export const useCartStore = create<CartState>()(
 
       },
       addToCart: (product: Product) => {
+        console.log(product)
         const items = get().items
 
         const existingItem = items.find((item) => item.id === product.id)
@@ -149,6 +152,21 @@ export const useCartStore = create<CartState>()(
 
       // // 🧹 تفريغ السلة بالكامل
       // clearCart: () => set({ items: [] }),
+
+      filterCompareProductOne: (name: string) => {
+
+        const products = get().allShopProducts;
+      
+        const filteredProduct = products.find((product) => product.name.startsWith(name));
+        
+      },
+      filterCompareProductTwo: (name: string) => {
+          
+
+        const products = get().allShopProducts;
+        const filteredProduct = products.find((product) => product.name === name);
+      
+      }
 
     }),
     {
