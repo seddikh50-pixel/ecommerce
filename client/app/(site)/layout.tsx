@@ -22,8 +22,14 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
         <SearchProducts products={products} />
       </Suspense>
       {children}
-      <FooterTop />
-      <Footer />
+
+      <Suspense fallback={null}>
+        <FooterTop />
+      </Suspense>
+
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
       <Suspense fallback={null}>
 
         <CartMenu />
