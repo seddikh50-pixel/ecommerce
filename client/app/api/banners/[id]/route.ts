@@ -7,7 +7,7 @@ import { promises as fs } from 'fs'
 interface Params {
     id: string
 }
-export async function DELETE(request: NextRequest, { params }: { params :Params }) {
+export async function DELETE(request: NextRequest,{ params }: { params: Promise<{ id: string }> }) {
 
     const { id } = await params
 
