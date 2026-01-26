@@ -51,7 +51,7 @@ export async function POST(req: Request) {
           fullName : fullName
         }
       })
-      revalidateTag('orders')
+      revalidateTag('orders', 'page');
 
     }
 
