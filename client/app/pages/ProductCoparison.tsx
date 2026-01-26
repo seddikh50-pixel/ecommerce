@@ -18,7 +18,6 @@ interface products {
 const ProductCoparison = ({ products }: { products: products[] }) => {
     const devRefOne = React.useRef<HTMLDivElement>(null);
     const devRefTwo = React.useRef<HTMLDivElement>(null);
-    const { filterCompareProductOne, filterCompareProductTwo } = useCartStore();
 
     const router = useRouter();
     const [compareOne, setCompareOne] = useState<string>("");
