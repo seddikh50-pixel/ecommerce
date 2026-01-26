@@ -96,7 +96,7 @@ export async function DELETE(
     });
 
     // 🔄 تحديث الكاش
-    revalidateTag("categories", "page");
+    revalidateTag("categories", "max");
 
     return NextResponse.json({
       success: true,

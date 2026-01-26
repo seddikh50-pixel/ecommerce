@@ -48,7 +48,6 @@ export async function POST(request: NextRequest) {
         const formData = await request.formData();
         const name = formData.get('name') as string;
         const image = formData.get('image') as File;
-        console.log(image)
 
         if (!name || !image || image.size === 0) {
             return NextResponse.json(
@@ -96,7 +95,7 @@ export async function POST(request: NextRequest) {
             },
         });
 
-        revalidateTag("brands", "page");
+        revalidateTag("brands", "max");
 
         return NextResponse.json(
             { msg: 'brand added successfully', success: true },

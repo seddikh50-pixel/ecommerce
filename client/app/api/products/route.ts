@@ -170,7 +170,7 @@ export async function POST(request: Request) {
       },
     });
 
-    revalidateTag('products', 'page');
+    revalidateTag('products', 'max');
 
     return NextResponse.json({
       msg: '✅ Product added successfully (Supabase + Stripe)',
@@ -235,7 +235,7 @@ export async function PUT(request: Request) {
         isStocked
       }
     });
-    revalidateTag("products", "page");
+    revalidateTag("products", "max");
     return NextResponse.json({ msg: 'product updated successfully', success: true }) 
 
   }

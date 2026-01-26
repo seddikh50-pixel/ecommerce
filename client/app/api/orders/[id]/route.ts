@@ -32,7 +32,7 @@ export async function DELETE(request: NextRequest, { params }: { params: Promise
         }
         await prisma.order.delete({ where: { id } })
 
-        revalidateTag("orders", "page");
+        revalidateTag("orders", "max");
         return NextResponse.json({ success: true, message: 'order deleted successfully' })
 
     } catch (error) {

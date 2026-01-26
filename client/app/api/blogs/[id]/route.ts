@@ -24,7 +24,7 @@ export async function DELETE(request: NextRequest, { params }: { params: Promise
             const filePath = path.join(process.cwd(), "public", blogImage.image)
             await fs.unlink(filePath)
         }
-        revalidateTag("blogs", "page");
+        revalidateTag("blogs", "max");
         return NextResponse.json({ success: true, message: 'brand deleted successfully' })
 
     } catch (error) {

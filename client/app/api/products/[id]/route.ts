@@ -105,7 +105,7 @@ export async function DELETE(
       where: { id }
     });
 
-    revalidateTag("products", "page");
+    revalidateTag("products", "max");
 
     return NextResponse.json({
       success: true,

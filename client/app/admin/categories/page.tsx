@@ -2,9 +2,12 @@ import CategoryForm from '@/components/admin/CategoryForm'
 import ListCategories from '@/components/admin/ListCategories'
 import { getAllCategories } from '@/lib/cache'
 import prisma from '@/lib/prisma'
+import { cacheLife } from 'next/cache'
 import React from 'react'
 
 const page = async () => {
+  // "use cache"
+  // cacheLife('max')
   const categories = await getAllCategories()
 
   return (

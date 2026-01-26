@@ -94,7 +94,7 @@ export async function POST(request: NextRequest) {
     });
 
     // ♻️ إعادة التحقق من الكاش
-    revalidateTag("categories", "page");
+    revalidateTag("categories", "max");
 
     return NextResponse.json(
       { msg: 'category added successfully', success: true },

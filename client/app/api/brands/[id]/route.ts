@@ -97,7 +97,7 @@ export async function DELETE(
       }
     }
 
-    revalidateTag("brands", "page");
+    revalidateTag("brands", "max");
 
     return NextResponse.json({
       success: true,
