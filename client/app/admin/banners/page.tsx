@@ -2,13 +2,13 @@
 import BannerForm from '@/components/admin/BannerForm'
 import ListBanners from '@/components/admin/ListBanners'
 import prisma from '@/lib/prisma'
+import { get } from 'http'
 import React from 'react'
 const Page = async () => {
 
 
 
   const getBanners = await prisma.banner.findMany()
-
   return (
     <div className='flex xl:flex-row lg:flex-row md:flex-col sm:flex-col flex-col  '>
        <div className=' xl:w-96  lg:w-96  p-4 b '>

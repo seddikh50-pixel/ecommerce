@@ -21,11 +21,11 @@ import { Button } from '../ui/button'
 interface Props {
     id: string;
     name: string;
-    images: string[];
-    price: string;
-    description: string;
-    categoryId: string;
-    brandId: string;
+    // images: string[];
+    // price: string;
+    // description: string;
+    // categoryId: string;
+    // brandId: string;
 }
 
 interface products {
@@ -70,7 +70,7 @@ const Products = ({ products }: products) => {
     }
     return (
         <div className=''>
-                        <h1 className='font-bold text-xl '>All Products</h1>
+            <h1 className='font-bold text-xl '>All Products</h1>
 
             <Table>
 
@@ -90,11 +90,11 @@ const Products = ({ products }: products) => {
                             <TableRow key={index} className='hover:bg-white/15'>
                                 <TableCell className="font-medium">
                                     <div className='relative xl:w-20 xl:h-15 lg:w-20 lg:h-15 md:w-15 md:h-15 sm:w-10 sm:h-10 h-10 w-10  rounded-sm overflow-hidden '>
-                                        <Image src={product?.images[0]} fill alt='' />
+                                        {/* <Image src={product?.images[0]} fill alt='' /> */}
                                     </div>
                                 </TableCell>
                                 <TableCell className=' text-sm'>{product.name.slice(0, 20)}...</TableCell>
-                                <TableCell className=''>${product.price}</TableCell>
+                                {/* <TableCell className=''>${product.price}</TableCell> */}
                                 <TableCell className="   h-full ">
                                     <div className='flex items-center justify-center gap-5 '>
                                         {/* <X className=' hover:bg-white hover:text-black cursor-pointer' onClick={() => deleteProduct(product.id)} /> */}

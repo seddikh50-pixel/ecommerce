@@ -1,14 +1,19 @@
 
 import Products from '@/components/admin/Products'
+import { getAllProducts } from '@/lib/cache'
 import prisma from '@/lib/prisma'
+import { get } from 'http'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
 
 const page = async () => {
-  const products = await prisma.product.findMany()
-  const users = await prisma.user.findMany()
+
+  const products = await getAllProducts()
+
+
+
 
   return (
     <div className=''>
