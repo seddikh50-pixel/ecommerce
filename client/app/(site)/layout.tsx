@@ -18,7 +18,9 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
         <MobileLinks />
       </Suspense>
 
-      <Header products={products} />
+      <Suspense fallback={null}>
+        <SearchProducts products={products} />
+      </Suspense>
       {children}
       <FooterTop />
       <Footer />
