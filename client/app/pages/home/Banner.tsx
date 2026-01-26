@@ -5,10 +5,12 @@ import React from 'react'
 import Image from 'next/image';
 import prisma from '@/lib/prisma';
 import ProductCoparison from '../ProductCoparison';
+import { get } from 'http';
+import { getAllBanner, getAllOrders, getAllProducts } from '@/lib/cache';
 
 const Banner = async () => {
-  const banner = await prisma.banner.findMany()
-  const products = await prisma.product.findMany()
+  const banner = await getAllBanner();
+  const products = await getAllProducts()
 
   return (
     <Container className='grid grid-cols-1 pt-5 lg:grid-cols-4 gap-2 h-max    '>

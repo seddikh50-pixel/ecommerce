@@ -40,6 +40,7 @@
 import prisma from "@/lib/prisma"
 import { NextRequest, NextResponse } from "next/server"
 import { supabase } from "@/lib/supabase"
+import { revalidateTag } from "next/cache"
 
 interface Params {
   id: string
@@ -88,6 +89,8 @@ export async function DELETE(
     await prisma.banner.delete({
       where: { id }
     })
+
+    revalidateTag("banners", "max");
 
     return NextResponse.json({
       success: true,

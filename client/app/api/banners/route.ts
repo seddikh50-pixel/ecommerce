@@ -46,6 +46,7 @@
 import { supabase } from '@/lib/supabase'
 import { NextResponse } from 'next/server'
 import prisma from '@/lib/prisma'
+import { revalidateTag } from 'next/cache'
 
 export async function POST(req: Request) {
   const formData = await req.formData()
@@ -81,6 +82,8 @@ export async function POST(req: Request) {
       image: data.publicUrl
     }
   })
+
+  revalidateTag("banners", "max");
 
   return NextResponse.json({ success: true })
 }

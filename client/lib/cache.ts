@@ -60,6 +60,15 @@ export const getAllUsers = unstable_cache(
 );
 
 
+export const getAllBanner = unstable_cache(
+  async () => {
+    return prisma.banner.findMany();
+  },
+  ["all-banners"],
+  { tags: ["banners"] }
+);
+
+
 
 
 

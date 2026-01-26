@@ -10,10 +10,11 @@ interface products {
     name: string;
     description: string;
     price: string;
-    images: string[];
-
-
+ 
 }
+
+
+
 
 const ProductCoparison = ({ products }: { products: products[] }) => {
     const devRefOne = React.useRef<HTMLDivElement>(null);
