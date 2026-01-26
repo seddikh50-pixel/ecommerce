@@ -12,7 +12,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
 
   return (
     <div className="relative">
-      
+
       {/* ✅ الحل هنا */}
       <Suspense fallback={null}>
         <MobileLinks />
@@ -22,7 +22,10 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
       {children}
       <FooterTop />
       <Footer />
-      <CartMenu />
+      <Suspense fallback={null}>
+
+        <CartMenu />
+      </Suspense>
     </div>
   );
 }
