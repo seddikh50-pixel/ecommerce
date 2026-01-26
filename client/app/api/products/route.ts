@@ -65,7 +65,7 @@ export async function POST(request: Request) {
         stripePriceId: stripePrice.id,
       },
     });
-    revalidateTag('products');
+    revalidateTag('products', 'page');
 
     return NextResponse.json({
       msg: '✅ Product added successfully (with Stripe)',
@@ -125,7 +125,7 @@ export async function PUT(request: Request) {
         isStocked
       }
     });
-    revalidateTag("products")
+    revalidateTag("products", "page");
     return NextResponse.json({ msg: 'product updated successfully', success: true }) 
 
   }

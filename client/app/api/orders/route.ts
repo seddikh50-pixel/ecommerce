@@ -29,7 +29,7 @@ export async function POST(request: Request) {
                 stripeSessionId: address.stripeSessionId
             }
         })
-        revalidateTag("orders")
+        revalidateTag("orders", "page");
         return NextResponse.json({ success: true, order: newOrder }, { status: 201 })
     } catch (error) {   
         console.log(error)

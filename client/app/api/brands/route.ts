@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
         })
 
 
-       revalidateTag("brands")
+       revalidateTag("brands", "page");
         return NextResponse.json({ msg: 'brand added successfuly', success: true }, { status: 201 })
     } catch (error) {
         return NextResponse.json({ msg: error, success: false }, { status: 404 });

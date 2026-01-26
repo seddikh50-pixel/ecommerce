@@ -29,7 +29,7 @@ export async function DELETE(request: NextRequest, { params }: { params: Promise
         await prisma.product.delete({
             where : {id}
         })
-        revalidateTag("products")
+        revalidateTag("products", "page");
 
 
 
