@@ -115,12 +115,12 @@ const Searchbar = ({ products }: ListProducts) => {
               searchProducts.length > 0 ? 
              ( searchProducts.map((product) => {
                 return (
-                  <div key={product.id} className='flex p-2 border border-gray-100 pt-2 gap-2'>
+                  <div key={product.id} className='flex p-2 border border-gray-100 pt-2 gap-2 hover:bg-gray-100'>
                     <SearchIcon className='text-black' />
-                    <Link href={`/product/${product.name}`} className='text-black'>{product.name} </Link>
+                    <Link href={`/product/${product.name}`} className='text-black '>{product.name.slice(0,30)}... </Link>
                   </div>
                 )
-              })) : (<h1 className='text-black  p-2'>No products</h1>)
+              })) : (<h1 className='text-black  p-4'>No products</h1>)
               
               }
           </div>

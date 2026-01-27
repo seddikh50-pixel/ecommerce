@@ -49,14 +49,27 @@ const CartItem = () => {
   const { increaseQuantity, decreaseQuantity, items, removeFromCart } = useCartStore()
   const [cart, setCart] = useState<CartItem[]>([]);
 
-  useEffect(() => {
-    const localItem = localStorage.getItem('cart-storage')
-    if (localItem) {
-      const itemsData = JSON.parse(decodeURIComponent(localItem));
-      setCart(itemsData.state.items)
+  // useEffect(() => {
+  //   const localItem = localStorage.getItem('cart-storage')
+  //   if (localItem) {
+  //     const itemsData = JSON.parse(decodeURIComponent(localItem));
+  //     setCart(itemsData.state.items)
 
+  //   }
+  // }, [items]);
+
+  useEffect(() => {
+  const localItem = localStorage.getItem('cart-storage');
+  if (localItem) {
+    try {
+      const itemsData = JSON.parse(localItem); // ❌ لا decodeURIComponent
+      setCart(itemsData.state.items);
+    } catch (err) {
+      console.warn("Failed to parse cart-storage:", err);
+      setCart([]); // قيمة افتراضية عند الفشل
     }
-  }, [items]);
+  }
+}, [items]);
 
 
 

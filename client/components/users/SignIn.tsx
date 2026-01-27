@@ -24,8 +24,8 @@ const SignIn = ({ handleLogout, user }: infos) => {
     return (
         <div className=''>
             <Container className='pt-20'>
-                <div className='flex justify-between px-10 items-center border rounded-sm  py-2'>
-                    <div className='flex justify-center items-center gap-6'>
+                <div className='flex xl:flex-row justify-between flex-col lg:flex-row md:flex-row px-10 items-center border sm:flex-col rounded-sm  py-2'>
+                    <div className='flex justify-center items-center gap-6 '>
                         <Image
                             width={100}
                             height={100}
