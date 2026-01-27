@@ -86,7 +86,7 @@ const SearchProducts = ({ products }: ListProducts) => {
                             return (
                                 <div key={product.id} className='flex gap-2 py-2 text-black p-2 border-b justify-start items-center'>
                                     <SearchIcon className='text-black' size={20} />
-                                    <Link onClick={() => setShowSearch(false)} href={`/product/${product.name}`} className='text-black hover:bg-amber-700'> <span className="text-sm">{product.name}</span> </Link>
+                                    <Link onClick={() => setShowSearch(false)} href={`/product/${product.name}`} className='text-black hover:bg-amber-700'> <span className="text-sm">{product.name.slice(0,30)}...</span> </Link>
                                 </div>
                             )
                         }) : <h1 className='text-black p-2'>No products </h1>
