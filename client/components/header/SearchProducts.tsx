@@ -61,6 +61,12 @@ const SearchProducts = ({ products }: ListProducts) => {
 
     return (
         <div className={`absolute  w-full shadow-sm bg-gray-100 h-64  z-40 left-0 lg:hidden xl:hidden transition-all duration-300 top-20 p-4  translate-y-0 opacity-100  `}>
+            <div>
+                {products.map((product) => (    
+                    <h1 key={product.id}>{product.name}</h1>
+                ))
+                            }
+            </div>
             <form onSubmit={(e) => e.preventDefault()} action="" className='relative   '>
                 <Input placeholder='Search...' className='flex-1 focus-visible:ring-0
                      focus-visible:border-store placeholder:tracking-wider text-black
