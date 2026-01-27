@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import prisma from "@/lib/prisma";
 import { SignJWT } from "jose";
 import { NextResponse } from "next/server";

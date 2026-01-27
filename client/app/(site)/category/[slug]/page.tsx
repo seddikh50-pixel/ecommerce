@@ -14,11 +14,8 @@ interface CategoryName {
 const page = async ({ params }: CategoryName) => {
     const { slug } = await params
     const category = decodeURIComponent(slug).replace('-', " ");
-    console.log(category)
     const products = await getAllProducts()
-    console.log(products)
     const getProductByCategory = products.filter((product) => product.category.name.toLowerCase() === category.toLowerCase())
-    console.log(getProductByCategory)
     const categories = await getAllCategories()
     return (
         <Container className='bg-gray-50'>
