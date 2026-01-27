@@ -97,8 +97,6 @@ const Products = ({ products }: products) => {
                                 <TableCell className=''>${product.price}</TableCell>
                                 <TableCell className="   h-full ">
                                     <div className='flex items-center justify-center gap-5 '>
-                                        <X className=' hover:bg-white hover:text-black cursor-pointer' onClick={() => deleteProduct(product.id)} />
-                                        <Edit className=' hover:bg-white hover:text-black cursor-pointer xl:block lg:block md:block sm:hidden hidden' />
                                         <Link href={`/admin/products/edit/${product.id}`} className='bg-blue-600 rounded-sm hover:bg-blue-600/90 text-white px-4 py-1'>Edit</Link>
                                         <button className='bg-red-600 rounded-sm hover:bg-red-600/90 text-white px-4 py-1' onClick={() => deleteProduct(product.id)}>Delete</button>
                                     </div>

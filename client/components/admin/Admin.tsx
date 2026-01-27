@@ -18,7 +18,7 @@ const Admin = () => {
 
 
     return (
-        <div className='flex justify-between items-center h-full '>
+        <div className='flex justify-between items-center h-full w-full '>
             <h1 className='  border-gray-400 text-xl font-bold'>SedTech Admin</h1>
             <Button className='rounded-sm bg-black ' onClick={handleLogout} >log out </Button>
         </div>

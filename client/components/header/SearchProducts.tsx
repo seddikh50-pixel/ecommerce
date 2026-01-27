@@ -42,6 +42,7 @@ const SearchProducts = ({ products }: ListProducts) => {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
+        console.log("search")
         if (!search.trim()) {
             setSearchProducts([]);
             setLoading(false);
@@ -50,6 +51,7 @@ const SearchProducts = ({ products }: ListProducts) => {
         setLoading(true)
         const timer = setTimeout(() => {
             const filtered = products.filter((product) => product.name.toLocaleLowerCase().startsWith(search))
+            console.log(filtered)
             setSearchProducts(filtered)
             setLoading(false)
         }, 500)
