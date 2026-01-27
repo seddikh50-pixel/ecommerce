@@ -1,12 +1,13 @@
 import ListOrders from '@/components/admin/ListOrders'
 import { getAllOrders, getAllProducts, getAllUsers } from '@/lib/cache'
+import prisma from '@/lib/prisma'
 import { enqueueSnackbar } from 'notistack'
 import React from 'react'
 
 const page = async () => {
-  const orders = await getAllOrders()
-  const products = await getAllProducts()
-  const users = await getAllUsers()
+  const orders = await prisma.order.findMany()
+  const products = await prisma.product.findMany()
+  const users = await prisma.user.findMany()
 
 
   

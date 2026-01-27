@@ -1,6 +1,7 @@
 
 import BannerForm from '@/components/admin/BannerForm'
 import ListBanners from '@/components/admin/ListBanners'
+import { getAllBanner } from '@/lib/cache'
 import prisma from '@/lib/prisma'
 import { get } from 'http'
 import React, { Suspense } from 'react'

@@ -25,6 +25,7 @@ const CategoryForm = () => {
                     body: formData
                 }
             )
+            // router.refresh()
             const data = await response.json()
             if (data.success) {
                 router.push('/admin/categories')

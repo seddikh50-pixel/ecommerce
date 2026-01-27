@@ -19,8 +19,8 @@ const ImageView = ({ images }: ImageProps) => {
 
   return (
     <div className="w-full space-y-3 border p-4 rounded-md  ">
+      
       <AnimatePresence mode='wait'>
-
         {openModel && (
           <motion.div
             key={active}
@@ -42,6 +42,7 @@ const ImageView = ({ images }: ImageProps) => {
                       <CarouselItem key={index} className='flex justify-center items-center h-full w-full'>
                         <div className='xl:h-96 xl:w-96 w-72 h-72  relative '>
                           <Image src={img} alt="img" fill className="object-cover" />
+
                         </div>
                       </CarouselItem>
                     )
@@ -74,7 +75,7 @@ const ImageView = ({ images }: ImageProps) => {
               src={active}
               alt="image"
               fill
-              className="object-cover hover:scale-110 hoverEffect"
+              className="object-contain hover:scale-110 hoverEffect"
             />
           </motion.div>
         </AnimatePresence>

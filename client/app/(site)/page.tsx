@@ -21,6 +21,7 @@ export default async  function Home() {
       {/* <div className="flex justify-evenly" >
       </div> */}
       <div className="bg-gray-100 pb-10">
+        
         <Banner />
         <HomeCategories />
         <div className="py-10">

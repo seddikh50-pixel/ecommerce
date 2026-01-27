@@ -10,7 +10,7 @@ import React from 'react'
 
 const page = async () => {
 
-  const products = await getAllProducts()
+  const products = await prisma.product.findMany()
 
 
 

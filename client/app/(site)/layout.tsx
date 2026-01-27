@@ -12,6 +12,9 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
 
   return (
     <div className="relative">
+      <Suspense fallback={null}>
+        <Header products={products} />
+      </Suspense>
 
       {/* ✅ الحل هنا */}
       <Suspense fallback={null}>

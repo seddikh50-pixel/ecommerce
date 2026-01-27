@@ -51,13 +51,14 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id } = await params;
+  console.log(id)
+
 
   try {
     // 🔎 جلب التصنيف
     const existingCategory = await prisma.category.findUnique({
       where: { id }
     });
-
     if (!existingCategory) {
       return NextResponse.json({
         success: false,

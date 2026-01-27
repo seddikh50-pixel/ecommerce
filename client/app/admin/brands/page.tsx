@@ -9,7 +9,7 @@ import React from 'react'
 const page = async () => {
   // "use cache"
   // cacheLife('max')
-  const getBrands = await getAllBrands()
+  const getBrands = await prisma.brand.findMany()
 
   return (
     <div className='flex xl:flex-row lg:flex-row md:flex-col sm:flex-col flex-col    '>

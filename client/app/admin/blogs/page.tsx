@@ -1,11 +1,12 @@
 import BlogForm from '@/components/admin/BlogForm'
 import ListBlogs from '@/components/admin/ListBlogs'
 import { getAllBlogs } from '@/lib/cache'
+import prisma from '@/lib/prisma'
 import React from 'react'
 
 const page = async () => {
 
-    const blogs = await getAllBlogs()
+    const blogs = await prisma.blog.findMany()
  
   
   return (

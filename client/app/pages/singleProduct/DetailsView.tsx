@@ -71,7 +71,8 @@ const DetailsView = ({ product }: DetailsViewProps) => {
       <div className='w-full md:w-3/5  '>
         <div className=' '>
           <h3 className='text-2xl font-bold'>{product?.name}</h3>
-          <h3>{product?.description}</h3>
+          <h1 className='font-bold text-xl py-2'>About this item :</h1>
+          <h3 className='text-gray-600'>{product?.description}</h3>
         </div>
         <div className='border-b border-gray-200'>
           <div className='flex  items-center gap-1 pb-5  '>
@@ -98,7 +99,7 @@ const DetailsView = ({ product }: DetailsViewProps) => {
 
 
           {itemCheck && itemCheck.quantity > 0 ? <div className=' h-10 w-full' >
-            <div className='flex justify-between border-b pb-1 w-full bg-amber-500  gap-2  '>
+            <div className='flex justify-between border-b pb-1 w-full   gap-2  '>
               <h3>Quantity</h3>
               <div className='flex gap-3 font-bold  '>
                 <button className='text-md w-5  ' onClick={() => decreaseQuantity(product.id)}>-</button>
@@ -112,7 +113,6 @@ const DetailsView = ({ product }: DetailsViewProps) => {
             </div>
           </div> : <div className='flex h-10 gap-2 w-full'><Button onClick={() => addToCart(product)} className='flex-1 rounded-full bg-store hover:bg-store/90'><ShoppingCartIcon /> Add to Cart</Button><Heart size={35} className='border p-1 rounded-sm border-violet-500 text-violet-500' /></div>
           }
-          {/* <Button onClick={() => addToCart(product)} className='flex-1 bg-violet-500 hover:bg-violet-400'><ShoppingBasket /> Add To Cart </Button> */}
           
         </div>
         <div className='grid xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 justify-between border-b py-5'>

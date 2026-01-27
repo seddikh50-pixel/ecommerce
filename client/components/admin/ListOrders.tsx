@@ -44,7 +44,6 @@ interface Product {
   isStocked: boolean;
   name: string;
   id: string;
-  category: category
   images: string[];
   price: string;
   description: string;
@@ -52,6 +51,7 @@ interface Product {
   brandId: string;
   stripeProductId: string | null; // ✅ أضف | null هنا
   stripePriceId: string | null;
+
 };
 
 
