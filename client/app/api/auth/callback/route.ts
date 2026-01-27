@@ -1,4 +1,3 @@
-export const dynamic = "force-dynamic";
 import prisma from "@/lib/prisma";
 import { SignJWT } from "jose";
 import { NextResponse } from "next/server";
@@ -65,7 +64,9 @@ export async function GET(req: Request) {
       .setExpirationTime("7d")
       .sign(secret);
 
-    const response = NextResponse.redirect("http://localhost:3000/account");
+
+    // const baseUrl = process.env.PUBLIC_URL || "http://localhost:3000";
+    const response = NextResponse.redirect(`${process.env.PUBLIC_URL}/account`);
 
     response.cookies.set("user", jwt, {
       httpOnly : true,

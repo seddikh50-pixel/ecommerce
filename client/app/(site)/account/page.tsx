@@ -31,45 +31,93 @@ export default function AccountPage() {
   const [loading, setLoading] = useState(true);
   const [spinner, setSpinner] = useState(false);
 
-  // 🔹 نحاول قراءة بيانات المستخدم من الكوكي (بعد تسجيل الدخول)
   useEffect(() => {
-    const handeUserAndSend = async () => {
-      const localItem = localStorage.getItem('cart-storage')
-      let itemsData;
-      if (localItem) {
-        itemsData = JSON.parse(decodeURIComponent(localItem));
-      }
+  const handeUserAndSend = async () => {
+    let itemsData = null;
+
+    // 🔹 قراءة بيانات الـ cart من localStorage بأمان
+    const localItem = localStorage.getItem('cart-storage');
+    if (localItem) {
       try {
-
-        const res = await fetch("/api/user", {
-          method: "POST",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-
-          },
-          body: JSON.stringify({
-            cart: itemsData
-          })
-
-        });
-        const data = await res.json()
-        if (data.success) {
-          setUser(data.user)
-        } else {
-          setUser(null)
-        }
-
-      } catch (error) {
-        console.log(error)
-      } finally {
-        setLoading(false)
+        itemsData = JSON.parse(localItem);
+      } catch (err) {
+        console.warn("Failed to parse cart-storage:", err);
+        itemsData = null;
       }
     }
 
-    handeUserAndSend()
+    try {
+      // 🔹 إرسال بيانات الـ cart إلى السيرفر
+      const res = await fetch("/api/user", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          cart: itemsData
+        })
+      });
 
-  }, []);
+      const data = await res.json();
+
+      if (data.success) {
+        setUser(data.user);
+      } else {
+        setUser(null);
+      }
+
+    } catch (error) {
+      console.error("Error fetching user:", error);
+      setUser(null);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  handeUserAndSend();
+}, []);
+
+
+  // 🔹 نحاول قراءة بيانات المستخدم من الكوكي (بعد تسجيل الدخول)
+  // useEffect(() => {
+  //   const handeUserAndSend = async () => {
+  //     const localItem = localStorage.getItem('cart-storage')
+  //     let itemsData;
+  //     if (localItem) {
+  //       itemsData = JSON.parse(decodeURIComponent(localItem));
+  //     }
+  //     try {
+
+  //       const res = await fetch("/api/user", {
+  //         method: "POST",
+  //         credentials: "include",
+  //         headers: {
+  //           "Content-Type": "application/json",
+
+  //         },
+  //         body: JSON.stringify({
+  //           cart: itemsData
+  //         })
+
+  //       });
+  //       const data = await res.json()
+  //       if (data.success) {
+  //         setUser(data.user)
+  //       } else {
+  //         setUser(null)
+  //       }
+
+  //     } catch (error) {
+  //       console.log(error)
+  //     } finally {
+  //       setLoading(false)
+  //     }
+  //   }
+
+  //   handeUserAndSend()
+
+  // }, []);
 
 
   // 🔹 تسجيل الدخول عبر Google
