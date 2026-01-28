@@ -50,7 +50,7 @@ const SearchProducts = ({ products }: ListProducts) => {
         }
         setLoading(true)
         const timer = setTimeout(() => {
-            const filtered = products.filter((product) => product.name.toLocaleLowerCase().startsWith(search))
+            const filtered = products.filter((product) => product.name.toLocaleLowerCase().startsWith(search.toLocaleLowerCase()));
             setSearchProducts(filtered)
             setLoading(false)
         }, 500)
@@ -66,9 +66,10 @@ const SearchProducts = ({ products }: ListProducts) => {
                      focus-visible:border-store placeholder:tracking-wider text-black
                       bg-white placeholder:font-semibold pr-16'
                     onChange={(e) => setSearch(e.target.value)}
+                    value={search}
                 />
                 {search ?
-                    <X className='absolute right-3 w-5 h-5 cursor-pointer text-black top-2 ' /> :
+                    <X className='absolute right-3 w-5 h-5 cursor-pointer text-black top-2 ' onClick={() => setSearch("")} /> :
                     <Search className='absolute cursor-pointer text-black right-3 top-2 w-5 h-5' />}
             </form>
             <div className='absolute w-[95%] left-3 mt-2  z-4'>
@@ -83,15 +84,15 @@ const SearchProducts = ({ products }: ListProducts) => {
 
                         :
                         searchProducts.length > 0 ?
-                        searchProducts.map((product) => {
-                            
-                            return (
-                                <div key={product.id} className='flex gap-2 py-2 text-black p-2 border-b justify-start items-center'>
-                                    <SearchIcon className='text-black' size={20} />
-                                    <Link onClick={() => setShowSearch(false)} href={`/product/${product.name}`} className='text-black hover:bg-amber-700'> <span className="text-sm">{product.name.slice(0,30)}...</span> </Link>
-                                </div>
-                            )
-                        }) : <h1 className='text-black p-2'>No products </h1>
+                            searchProducts.map((product) => {
+
+                                return (
+                                    <div key={product.id} className='flex gap-2 py-2 text-black p-2 border-b justify-start items-center'>
+                                        <SearchIcon className='text-black' size={20} />
+                                        <Link onClick={() => setShowSearch(false)} href={`/product/${product.name}`} className='text-black hover:bg-amber-700'> <span className="text-sm">{product.name.slice(0, 30)}...</span> </Link>
+                                    </div>
+                                )
+                            }) : <h1 className='text-black p-2'>No products </h1>
 
                     }
                 </div>
