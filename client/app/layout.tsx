@@ -10,7 +10,10 @@ import { Providers } from "@/components/snackProvider/ProviderSnack";
 
 export const metadata: Metadata = {
   title: 'sedTech - Your One-Stop Online Shop for Everything!',
-  description: 'An all-in-one online marketplace where you can find everything you need — from everyday essentials to the latest trends, all in one place.',
+  description: 'An all-in-one online marketplace where you can find everything you need — from everyday essentials to the latest trends, all in one place.', 
+  other: {
+    googleSiteVerification: "google3f8aa779c74efec1",
+  }
 }
 
 export default function RootLayout({
