@@ -5,6 +5,7 @@ import prisma from "@/lib/prisma";
 import { revalidateTag } from "next/cache";
 
 export async function POST(req: Request) {
+  console.log("sssssssssssssssssssssssssssssssssssssssssssssss")
   const buf = Buffer.from(await req.arrayBuffer());
   const signature = req.headers.get("stripe-signature") as string;
   let event: Stripe.Event;
@@ -51,6 +52,8 @@ export async function POST(req: Request) {
           fullName : fullName
         }
       })
+
+      // console.log({lakh : await prisma.order.findMany()})
       revalidateTag('orders', 'max');
 
     }

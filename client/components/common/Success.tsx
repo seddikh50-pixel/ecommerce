@@ -33,7 +33,7 @@ const SuccessPage = () => {
     fetchSession();
   }, []);
 
-  if (loading) return <p>Loading payment details...</p>;
+  if (loading) return <div className="h-screen w-full flex justify-center items-center text-violet-700"><p>Loading payment details...</p></div>;
   if (!sessionData) return <p>Failed to load payment details.</p>;
 
   const products = sessionData.metadata?.products ? JSON.parse(sessionData.metadata.products) : [];
@@ -42,7 +42,6 @@ const SuccessPage = () => {
   const customerEmail = sessionData.customer_email;
   const fullName = sessionData.metadata?.useName;
 
-  console.log(products);
 
   return (
     <div className="h-160 flex justify-center items-center">

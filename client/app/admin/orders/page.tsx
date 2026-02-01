@@ -7,7 +7,7 @@ import React from 'react'
 const page = async () => {
   const orders = await prisma.order.findMany()
   const products = await prisma.product.findMany()
-  const users = await prisma.user.findMany()
+
 
 
   

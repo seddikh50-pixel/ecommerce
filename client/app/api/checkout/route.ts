@@ -8,6 +8,7 @@ interface CheckoutItem {
 }
 
 export async function POST(req: Request) {
+  console.log("seddik")
   try {
     const { items, user } = await req.json();
 

@@ -80,7 +80,7 @@ const FooterTop =async () => {
                         </div>
                         <div>
                             <p className='text-sm text-gray-700'>
-                                Discover curated furniture collections at Shoptech, blending style and comfort to elevate your living spaces.
+                                Discover curated furniture collections at Sed-Store, blending style and comfort to elevate your living spaces.
                             </p>
                         </div>
                     </div>
