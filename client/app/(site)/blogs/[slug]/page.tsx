@@ -58,22 +58,25 @@ const page = async ({ params }: BlogId) => {
   const blog = (await getAllBlogs()).find(
     (bl) => bl.title.toLowerCase().trim() === blogName.toLowerCase()
   )
+
   
   if (!blog) {
     return <div>no blog</div>
   }
 
   return (
-    <Container className='flex flex-col space-y-5'>
+    <Container className='flex flex-col space-y-5 mb-10'>
       <Pathname productTitle={blogName} />
 
       <div className='relative w-[700px] h-[400px]'>
         <Image src={blog.image} fill alt='' />
       </div>
+      <h1 className='underline-offset-1 underline'> {new Date(blog.createdAt).toDateString()}</h1>
 
-      <p className='text-2xl font-black'>{blog.title}</p>
+      <p className='text-xl font-black'> {blog.title.replace(/-/g, ' ')}
+</p>
 
-      <h1 className='max-w-[1000px] whitespace-pre-line text-xl text-gray-700'>
+      <h1 className='max-w-[1000px] whitespace-pre-line text-lg text-gray-700'>
         {blog.content}
       </h1>
     </Container>

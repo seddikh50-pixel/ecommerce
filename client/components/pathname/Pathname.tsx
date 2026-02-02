@@ -14,8 +14,8 @@ const Pathname = ({ productTitle }: title) => {
         <div>
             <div className='flex gap-2 py-4 justify-start items-center'>
                 <Home size={20}/>
-                <h1>{pathName.split('/')[1]}{" /  "}</h1>
-                <h1>{productTitle}</h1>
+                <h1 className='text-store'>{pathName.split('/')[1]}{" /  "}</h1>
+                <h1 className='text-store'>{productTitle}</h1>
             </div>
         </div>
     )
